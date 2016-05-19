@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Top } from './../../shared/Top';
-import { MDLWrapper } from './../../shared/MDLWrapper';
+import { Top } from '../../shared/Top';
+import { MDLWrapper } from '../../shared/MDLWrapper';
 import { ContainerModel } from '../../../models/ContainerModel';
 
 export class LiveFeedCard extends Component<{container: ContainerModel}, {}> {

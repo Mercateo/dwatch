@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { UiStore } from '../../stores/UiStore';
 import { observer } from 'mobx-react/index';
-import { MDLWrapper } from './../shared/MDLWrapper';
+import { MDLWrapper } from '../shared/MDLWrapper';
 import { inject } from '../../utils/IOC';
 
 @observer

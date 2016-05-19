@@ -29,7 +29,7 @@ describe('ContainerStore.ts', () => {
   let dockerFacadeMock: Mock<DockerFacade>;
 
   beforeEach(() => {
-    // kernel.snapshot();
+    kernel.snapshot();
     containerResponseMock = getContainerResponseMock();
 
     dockerFacadeMock = Mock.of(DockerFacade);
@@ -130,6 +130,6 @@ describe('ContainerStore.ts', () => {
   });
 
   afterEach(() => {
-    // kernel.restore();
+    kernel.restore();
   });
 });

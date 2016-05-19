@@ -20,11 +20,11 @@ delete conf.entry;
 delete conf.output;
 
 conf.entry = [
-  './tests/tests.index.js'
+  './app/tests/tests.index.js'
 ];
 
 conf.output = {
-  path: path.resolve(__dirname, 'generated'),
+  path: path.resolve(__dirname, 'app', 'generated'),
   devtoolModuleFilenameTemplate: './[resource-path]',
   filename: 'tests.js'
 };

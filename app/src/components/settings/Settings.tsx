@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react/index';
 import { SettingsStore } from '../../stores/SettingsStore';
 import { ContainerStore } from '../../stores/ContainerStore';
-import { MDLWrapper } from './../shared/MDLWrapper';
+import { MDLWrapper } from '../shared/MDLWrapper';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import { UiStore } from '../../stores/UiStore';
 import { NOTIFICATION_TYPE, Notification, NotificationStore } from '../../stores/NotificationStore';

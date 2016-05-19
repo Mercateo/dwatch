@@ -12,7 +12,7 @@ describe('DockerSystemStore.ts', () => {
   let versionResponseMock;
 
   beforeEach(() => {
-    // kernel.snapshot();
+    kernel.snapshot();
     versionResponseMock = getVersionResponseMock();
     dockerFacadeMock = Mock.of(DockerFacade);
 
@@ -46,6 +46,6 @@ describe('DockerSystemStore.ts', () => {
   });
 
   afterEach(() => {
-    // kernel.restore();
+    kernel.restore();
   });
 });

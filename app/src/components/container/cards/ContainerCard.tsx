@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
 import { UiStore } from '../../../stores/UiStore';
-import { MDLWrapper } from './../../shared/MDLWrapper';
+import { MDLWrapper } from '../../shared/MDLWrapper';
 import { AsyncButton } from '../../shared/AsyncButton';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
 import { ContainerModel, CONTAINER_RUN_STATE } from '../../../models/ContainerModel';

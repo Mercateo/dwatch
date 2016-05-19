@@ -10,7 +10,7 @@ describe('UiStore.ts', () => {
   let notificationStoreMock: Mock<NotificationStore>;
 
   beforeEach(() => {
-    // kernel.snapshot();
+    kernel.snapshot();
     
     notificationStoreMock = Mock.of(NotificationStore);
     bindMock(NotificationStore, notificationStoreMock.mock);
@@ -45,6 +45,6 @@ describe('UiStore.ts', () => {
   });
 
   afterEach(() => {
-    // kernel.restore();
+    kernel.restore();
   });
 });

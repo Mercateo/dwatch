@@ -1,12 +1,12 @@
 var istanbul = require('istanbul');
 var collector = new istanbul.Collector();
 var reporter = new istanbul.Reporter();
-var remappedJson = require('./../generated/coverage-final.json');
+var remappedJson = require('./../app/generated/coverage-final.json');
 var keys = Object.keys(remappedJson);
 var coverage = {};
 
 for (var i = 0; i < keys.length; i++) {
-  if (keys[ i ].startsWith('src/')) {
+  if (keys[ i ].startsWith('app/src/')) {
     coverage[ keys[ i ] ] = remappedJson[ keys[ i ] ];
   }
 }

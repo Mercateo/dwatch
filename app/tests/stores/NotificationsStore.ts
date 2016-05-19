@@ -6,7 +6,7 @@ describe('NotificationStore.ts', () => {
   let store;
 
   beforeEach(() => {
-    // kernel.snapshot();
+    kernel.snapshot();
     kernel.unbind(NotificationStore);
     kernel.bind(NotificationStore).to(NotificationStore).inSingletonScope();
     store = kernel.get(NotificationStore);
@@ -17,6 +17,6 @@ describe('NotificationStore.ts', () => {
   });
 
   afterEach(() => {
-    // kernel.restore();
+    kernel.restore();
   });
 });

@@ -1,4 +1,4 @@
-/// <reference path="../node_modules/inversify-binding-decorators/type_definitions/inversify-binding-decorators/inversify-binding-decorators.d.ts" />
+/// <reference path="../../node_modules/inversify-dts/inversify-binding-decorators/inversify-binding-decorators.d.ts" />
 
 import 'source-map-support/register';
 import 'babel-polyfill';

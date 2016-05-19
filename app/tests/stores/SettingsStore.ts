@@ -13,7 +13,7 @@ describe('SettingsStore.ts', () => {
   let store;
 
   beforeEach(() => {
-    // kernel.snapshot();
+    kernel.snapshot();
     settingsMock = getSettingsMock();
 
     kernel.unbind(SettingsStore);
@@ -53,6 +53,6 @@ describe('SettingsStore.ts', () => {
 
   afterEach(() => {
     localStorage.removeItem('config');
-    // kernel.restore();
+    kernel.restore();
   });
 });

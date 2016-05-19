@@ -14,7 +14,9 @@ module.exports = {
         'material-design-lite/material.min.js',
         'material-design-lite/dist/material.cyan-light_blue.min.css',
         'flag-icon-css/css/flag-icon.min.css'
-      ]
+      ],
+      modulesFromFile: false,
+      modulesDir: path.resolve(__dirname, 'app', 'node_modules')
     }),
     {
       fs: 'commonjs fs',
@@ -23,10 +25,10 @@ module.exports = {
     }
   ],
   entry: [
-    './src/index.tsx'
+    './app/src/index.tsx'
   ],
   output: {
-    path: path.resolve(__dirname, 'generated'),
+    path: path.resolve(__dirname, 'app', 'generated'),
     filename: 'app.js'
   },
   module: {
@@ -62,7 +64,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './app/src/index.html'
     }),
     new ExtractTextPlugin('styles_[hash].css', {
       allChunks: true

@@ -1,7 +1,9 @@
+var path = require('path');
+
 module.exports = function(config) {
   config.set({
 
-    basePath: '.',
+    basePath: './app/',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -10,8 +12,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      require.resolve('babel-polyfill/dist/polyfill.min.js'),
-      require.resolve('reflect-metadata/Reflect.js'),
+      path.join('node_modules', 'babel-polyfill', 'dist', 'polyfill.min.js'),
+      path.join('node_modules', 'reflect-metadata', 'Reflect.js'),
       'generated/tests.js'
     ],
 

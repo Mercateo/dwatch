@@ -351,7 +351,7 @@ export class DockerFacade {
   // }
 
   private async listContainers (options: Object = {}): Promise<Array<Container>> {
-    return await Promise.all(
+    return Promise.all(
       (await new Promise<Array<SummarizedContainer>>((resolve, reject) => {
         this.dockerode.listContainers(options, (err: any, containers: Array<SummarizedContainer>) => {
           if (err) {

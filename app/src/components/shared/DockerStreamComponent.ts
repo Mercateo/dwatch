@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { dockerStream } from './../../utils/Helper';
+import { dockerStream } from '../../utils/Helper';
 
 export abstract class DockerStreamComponent<StreamData, P, S> extends Component<P, S> {
   private stream: any = null;

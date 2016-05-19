@@ -120,7 +120,7 @@ describe('DockerFacade.ts', () => {
 
     beforeEach(() => {
       failActions = false;
-      // kernel.snapshot();
+      kernel.snapshot();
 
       dockerodeMock = getDockerodeMock();
       dockerodeContainerMock = getDockerodeContainerMock();
@@ -256,7 +256,7 @@ describe('DockerFacade.ts', () => {
     });
 
     afterEach(() => {
-      // kernel.restore();
+      kernel.restore();
     });
   });
 });
