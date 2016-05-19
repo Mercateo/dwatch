@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
+var version = require('./package.json').version;
 
 module.exports = {
   externals: [
@@ -70,7 +71,12 @@ module.exports = {
       allChunks: true
     }),
     new webpack.NoErrorsPlugin(),
-    require('webpack-fail-plugin')
+    require('webpack-fail-plugin'),
+    new webpack.DefinePlugin({
+      __DEVELOP__: process.env.NODE_ENV === 'develop',
+      __PRODUCTION__: process.env.NODE_ENV === 'production',
+      __VERSION__: JSON.stringify(version)
+    })
   ],
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.

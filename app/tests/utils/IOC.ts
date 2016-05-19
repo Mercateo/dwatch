@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { provideInstance, provideSingleton, kernel, inject } from '../../src/utils/IOC';
 
-xdescribe('IOC.ts', () => {
+describe('IOC.ts', () => {
   beforeEach(() => {
     // kernel.snapshot();
   });

@@ -1,6 +1,5 @@
 var conf = require('./webpack.config');
 var webpack = require('webpack');
-var version = require('./package.json').version;
 
 conf.devtool = 'inline-source-map';
 
@@ -18,9 +17,5 @@ conf.module.loaders.push({
 });
 
 // conf.plugins.push(new webpack.HotModuleReplacementPlugin());
-conf.plugins.push(new webpack.DefinePlugin({
-  __DEVELOP__: true,
-  __PRODUCTION__: false,
-  __VERSION__: JSON.stringify(version)
-}));
+
 module.exports = conf;

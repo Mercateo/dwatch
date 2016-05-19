@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var conf = require('./webpack.config');
-var version = require('./package.json').version;
 
 conf.devtool = 'inline-source-map';
 conf.externals.shift();
@@ -33,11 +32,5 @@ conf.plugins.shift();
 conf.plugins.shift();
 conf.plugins.shift();
 conf.plugins.shift();
-
-conf.plugins.push(new webpack.DefinePlugin({
-  __PRODUCTION__: true,
-  __DEVELOP__: false,
-  __VERSION__: JSON.stringify(version)
-}));
 
 module.exports = conf;
