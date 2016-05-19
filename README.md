@@ -11,7 +11,7 @@ If you find bugs please file an issue.
 <img src="assets/screenshot_1.png" alt="Screenshot dashboard" width="33%"/> <img src="assets/screenshot_2.png" alt="Screenshot containers" width="33%"/> <img src="assets/screenshot_3.png" alt="Screenshot container detail" width="32%"/>
 
 ##Motivation
-Im a big fan of docker and how it simplifies my daily work. No more ```npm i``` for 50+ projects, you know what I mean :)
+Im a big fan of docker and how it simplifies my daily work. No more ```npm install``` for 50+ projects, you know what I mean :)
 But basically *DWatch* is a big technology evaluation for our upcoming SPAs. We tried several architectures
 and _hot_ frameworks in separate small applications for battle testing different concepts against our needs.
 *DWatch* is an almost production-ready app and we proudly present it to you :)
@@ -44,7 +44,7 @@ Some long-term features that I want to add (no order):
 * better networking support
 
 ##Local development
-* install deps: ```npm i```
+* install deps: ```npm install```
 * start a watch task: ```npm run watch```
 * start electron: ```npm run start```
 
