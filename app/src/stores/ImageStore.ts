@@ -48,7 +48,7 @@ export class ImageStore {
   }
 
   async loadImage (imageId: string): Promise<void> {
-    let image;
+    let image: ImageModel;
 
     try {
       image = new ImageModel(await this.docker.getImage(imageId));
@@ -60,8 +60,8 @@ export class ImageStore {
     if(danglingImages.find(x => x.Id === image.id)) {
       image.dangling = true;
     }
-
-    return image;
+    
+    this.images.set(image.id, image);
   }
 
   async removeImage (imageId: string): Promise<void> {
