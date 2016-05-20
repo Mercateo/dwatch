@@ -73,7 +73,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     require('webpack-fail-plugin'),
     new webpack.DefinePlugin({
-      __DEVELOP__: process.env.NODE_ENV === 'develop',
+      __DEVELOP__: process.env.NODE_ENV === 'development',
       __PRODUCTION__: process.env.NODE_ENV === 'production',
       __VERSION__: JSON.stringify(version)
     })

@@ -72,6 +72,14 @@ app.on('ready', function() {
           focusedWindow.webContents.toggleDevTools();
       }
     });
+
+    viewMenu.submenu.push({
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      click(item, focusedWindow) {
+        if (focusedWindow) focusedWindow.reload();
+      }
+    });
   }
 
   let windowMenu = {
@@ -146,12 +154,14 @@ app.on('ready', function() {
         {
           label: 'Quit',
           accelerator: 'Command+Q',
-          click() { app.quit(); }
+          click() {
+            app.quit();
+          }
         },
       ]
     });
     // Window menu.
-    menu[3].submenu.push(
+    menu[ 3 ].submenu.push(
       {
         type: 'separator'
       },
