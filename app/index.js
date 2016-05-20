@@ -32,21 +32,9 @@ app.on('ready', function() {
     mainWindow = null;
   });
 
-  var applicationMenu = {
-      label: "Application",
-      submenu: [
-        { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
-        { type: "separator" },
-        {
-          label: "Quit", accelerator: "Command+Q",
-          click() {
-            app.quit();
-          }
-        }
-      ]
-    };
+  let menu = [];
 
-  var editMenu = {
+  let editMenu = {
     label: "Edit",
     submenu: [
       { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
@@ -58,8 +46,9 @@ app.on('ready', function() {
       { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
     ]
   };
+  menu.push(editMenu);
 
-  var viewMenu = {
+  let viewMenu = {
     label: 'View',
     submenu: [
       {
@@ -72,6 +61,7 @@ app.on('ready', function() {
       }
     ]
   };
+  menu.push(viewMenu);
 
   if (process.env.NODE_ENV === 'development') {
     viewMenu.submenu.push({
@@ -84,7 +74,7 @@ app.on('ready', function() {
     });
   }
 
-  var windowMenu = {
+  let windowMenu = {
     label: 'Window',
     role: 'window',
     submenu: [
@@ -100,8 +90,9 @@ app.on('ready', function() {
       }
     ]
   };
+  menu.push(windowMenu);
 
-  var helpMenu = {
+  let helpMenu = {
     label: 'Help',
     role: 'help',
     submenu: [
@@ -113,8 +104,65 @@ app.on('ready', function() {
       }
     ]
   };
+  menu.push(helpMenu);
 
-  Menu.setApplicationMenu(Menu.buildFromTemplate([ applicationMenu, editMenu, viewMenu, windowMenu, helpMenu ]));
+  if (process.platform === 'darwin') {
+    const name = app.getName();
+    menu.unshift({
+      label: name,
+      submenu: [
+        {
+          label: 'About ' + name,
+          role: 'about'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Services',
+          role: 'services',
+          submenu: []
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Hide ' + name,
+          accelerator: 'Command+H',
+          role: 'hide'
+        },
+        {
+          label: 'Hide Others',
+          accelerator: 'Command+Alt+H',
+          role: 'hideothers'
+        },
+        {
+          label: 'Show All',
+          role: 'unhide'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          click() { app.quit(); }
+        },
+      ]
+    });
+    // Window menu.
+    menu[3].submenu.push(
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Bring All to Front',
+        role: 'front'
+      }
+    );
+  }
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
 });
 
 function run (args, done) {
