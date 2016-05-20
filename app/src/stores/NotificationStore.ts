@@ -18,6 +18,7 @@ export interface Notification {
   type: NOTIFICATION_TYPE;
   timeout?: number;
   action?: NotificationAction;
+  processedAt?: number;
 }
 
 @provideSingleton(NotificationStore)
