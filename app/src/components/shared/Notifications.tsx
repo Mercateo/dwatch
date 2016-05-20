@@ -32,6 +32,11 @@ export class Notifications extends Component<void, any> {
         const notificationToShow = this.notificationStore.notifications[ 0 ];
         this.notificationStore.notifications.splice(0, 1);
 
+        // dont
+        if(this.currentNotification != null && notificationToShow.message === this.currentNotification.message) {
+          return;
+        }
+
         this.currentNotification = notificationToShow;
 
         let data: any = {
@@ -55,7 +60,18 @@ export class Notifications extends Component<void, any> {
     this.disposer();
   }
 
-  getColor (): string {
+  render () {
+    return (
+      <MDLWrapper>
+        <div className="mdl-snackbar mdl-js-snackbar" style={{ backgroundColor: this.getColor() }}>
+          <div className="mdl-snackbar__text"></div>
+          <button type="button" className="mdl-snackbar__action"></button>
+        </div>
+      </MDLWrapper>
+    );
+  }
+
+  private getColor (): string {
     if (this.currentNotification != null) {
       switch (this.currentNotification.type) {
         case NOTIFICATION_TYPE.ERROR:
@@ -68,16 +84,5 @@ export class Notifications extends Component<void, any> {
           return null;
       }
     }
-  }
-
-  render () {
-    return (
-      <MDLWrapper>
-        <div className="mdl-snackbar mdl-js-snackbar" style={{ backgroundColor: this.getColor() }}>
-          <div className="mdl-snackbar__text"></div>
-          <button type="button" className="mdl-snackbar__action"></button>
-        </div>
-      </MDLWrapper>
-    );
   }
 }
