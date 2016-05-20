@@ -10,26 +10,33 @@ export class ImageStore {
 
   images = map<ImageModel>();
 
-  danglingImages = map<ImageModel>();
-
   constructor () {
     this.docker.onEvent(event => {
       switch ((<DockerEvent> event).Action || (<DockerSwarmEvent> event).status) {
         case 'pull':
-        case 'untag':  
+        case 'untag':
           this.loadImage(event.id);
           break;
         case 'delete':
           this.images.delete(event.id);
-          this.danglingImages.delete(event.id);
           break;
       }
     });
   }
 
   async loadImages (): Promise<void> {
+    // there is now way to get dangling state from remote api without querying for dangling images
+    // (see https://github.com/docker/docker/issues/22859#issuecomment-220682319)
+    let danglingImages = await this.docker.listDanglingImages();
     let images: Array<ImageModel> = (await this.docker.listImages())
-      .map(image => new ImageModel(image));
+      .map(image => new ImageModel(image))
+      .map(image => {
+        if(danglingImages.find(x => x.Id === image.id)) {
+          image.dangling = true;
+        }
+
+        return image;
+      });
 
     transaction(() => {
       this.images.clear();
@@ -40,32 +47,25 @@ export class ImageStore {
     });
   }
 
-  async loadDanglingImages (): Promise<void> {
-    let images: Array<ImageModel> = (await this.docker.listDanglingImages())
-      .map(image => new ImageModel(image));
-
-    transaction(() => {
-      this.danglingImages.clear();
-
-      for (let image of images) {
-        this.danglingImages.set(image.id, image);
-      }
-    });
-  }
-
   async loadImage (imageId: string): Promise<void> {
-    await this.loadImages();
-    await this.loadDanglingImages();
+    let image;
 
-    const image = this.images.get(imageId) || this.danglingImages.get(imageId);
-
-    if(image == null) {
-      throw new Error('Container not found.');
+    try {
+      image = new ImageModel(await this.docker.getImage(imageId));
+    } catch(e) {
+      throw new Error(`Image for ${imageId} not found.`);
     }
+
+    let danglingImages = await this.docker.listDanglingImages();
+    if(danglingImages.find(x => x.Id === image.id)) {
+      image.dangling = true;
+    }
+
+    return image;
   }
 
   async removeImage (imageId: string): Promise<void> {
-    const image = this.images.get(imageId) || this.danglingImages.get(imageId);
+    const image = this.images.get(imageId);
 
     if (image == null) {
       throw new Error(`No image found for ${imageId}.`);

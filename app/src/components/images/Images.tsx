@@ -27,7 +27,7 @@ interface ImagesProps {
 export class Images extends Component<ImagesProps, {}> {
   @inject(NotificationStore)
   private notificationStore: NotificationStore;
-  
+
   @inject(UiStore)
   private uiStore: UiStore;
 
@@ -39,12 +39,12 @@ export class Images extends Component<ImagesProps, {}> {
 
   @computed
   private get images () {
-    return this.imageStore.images.values();
+    return this.imageStore.images.values().filter(image => !image.dangling);
   }
 
   @computed
   private get danglingImages () {
-    return this.imageStore.danglingImages.values();
+    return this.imageStore.images.values().filter(image => image.dangling);
   }
 
   async componentWillMount () {
@@ -137,7 +137,6 @@ export class Images extends Component<ImagesProps, {}> {
 
     try {
       await this.imageStore.loadImages();
-      await this.imageStore.loadDanglingImages();
       finishTask();
     } catch (e) {
       finishTask(e);

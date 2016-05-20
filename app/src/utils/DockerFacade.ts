@@ -437,9 +437,7 @@ export class DockerFacade {
   }
 
   listImages(): Promise<Array<Image>> {
-    return this.fetchImages({
-      filters: { dangling: [ "false" ] }
-    });
+    return this.fetchImages();
   }
 
   listDanglingImages(): Promise<Array<Image>> {

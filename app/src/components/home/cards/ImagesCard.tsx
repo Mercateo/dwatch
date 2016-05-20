@@ -25,7 +25,7 @@ export class ImagesCard extends Component<void, {}> {
 
   @computed
   private get danglingImages() {
-    return this.imageStore.danglingImages.values();
+    return this.images.filter(image => image.dangling);
   }
 
   async componentWillMount() {
@@ -33,7 +33,6 @@ export class ImagesCard extends Component<void, {}> {
 
     try {
       await this.imageStore.loadImages();
-      await this.imageStore.loadDanglingImages();
       finishTask();
     } catch (e) {
       finishTask(e);

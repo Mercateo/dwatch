@@ -31,7 +31,7 @@ export class Image extends Component<ImageProps, {}> {
 
   @computed
   private get image (): ImageModel {
-    return this.imageStore.images.get(this.imageId) || this.imageStore.danglingImages.get(this.imageId);
+    return this.imageStore.images.get(this.imageId);
   }
 
   async componentWillMount () {
