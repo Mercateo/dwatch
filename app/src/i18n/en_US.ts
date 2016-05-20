@@ -14,6 +14,10 @@ export const en_US: I18NLanguage = {
   'home.containers.supportingText': 'Get a list of your containers.',
   'home.containers.all': '{count, number} containers',
   'home.containers.running': '{count, number} online',
+  'home.images': 'Images',
+  'home.images.supportingText': 'A list of all images',
+  'home.images.all': '{count, number} images',
+  'home.images.dangling': '{count, number} dangling',
   'home.system': 'System',
   'home.system.server-version': 'Server Version',
   'home.system.os': 'OS',
@@ -36,6 +40,16 @@ export const en_US: I18NLanguage = {
   'containers.state.CREATED': 'Created',
   'containers.state.EXITED': 'Exited',
   'containers.state.RUNNING': 'Up',
+
+  // images
+  'images.title': 'Images',
+  'images.th.id': 'Id',
+  'images.th.tags': 'Tags',
+  'images.th.created': 'Created',
+  'images.th.size': 'Size',
+  'images.filter.showDangling': 'Show dangling',
+  'images.actions.gc': 'Remove dangling images',
+  'images.actions.gc.warning': 'Not all dangling images could be removed. They may be used by stopped containers.',
 
   // container details
   'container.title': 'Container {name}',

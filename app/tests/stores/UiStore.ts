@@ -16,9 +16,7 @@ describe('UiStore.ts', () => {
     bindMock(NotificationStore, notificationStoreMock.mock);
 
     notificationStoreMock.mock.notifications = [];
-
-    kernel.unbind(UiStore);
-    kernel.bind(UiStore).to(UiStore).inSingletonScope();
+    
     store = kernel.get(UiStore);
   });
 

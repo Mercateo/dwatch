@@ -88,10 +88,10 @@ export class Settings extends Component<{ intl: InjectedIntlProps }, {}> {
             {this.renderOptions()}
           </div>
           <div className={`mdl-card__actions mdl-card--border`}>
-            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-               onClick={this.submit}>
+            <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    onClick={this.submit}>
               <FormattedMessage id="settings.action.submit"/>
-            </a>
+            </button>
           </div>
         </div>
       </div>

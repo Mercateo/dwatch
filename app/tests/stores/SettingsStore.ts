@@ -15,9 +15,7 @@ describe('SettingsStore.ts', () => {
   beforeEach(() => {
     kernel.snapshot();
     settingsMock = getSettingsMock();
-
-    kernel.unbind(SettingsStore);
-    kernel.bind(SettingsStore).to(SettingsStore).inSingletonScope();
+    
     store = kernel.get(SettingsStore);
   });
 

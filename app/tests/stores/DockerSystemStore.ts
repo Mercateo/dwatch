@@ -18,8 +18,6 @@ describe('DockerSystemStore.ts', () => {
 
     bindMock(DockerFacade, dockerFacadeMock.mock);
 
-    kernel.unbind(DockerSystemStore);
-    kernel.bind(DockerSystemStore).to(DockerSystemStore).inSingletonScope();
     store = kernel.get(DockerSystemStore);
   });
 

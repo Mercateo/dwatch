@@ -35,9 +35,7 @@ describe('ContainerStore.ts', () => {
     dockerFacadeMock = Mock.of(DockerFacade);
 
     bindMock(DockerFacade, dockerFacadeMock.mock);
-
-    kernel.unbind(ContainerStore);
-    kernel.bind(ContainerStore).to(ContainerStore).inSingletonScope();
+    
     store = kernel.get(ContainerStore);
   });
 

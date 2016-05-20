@@ -49,7 +49,7 @@ export class ContainerStore  {
     }
   }
 
-  async removeContainer (containerId: string) {
+  async removeContainer (containerId: string): Promise<void> {
     const container = this.containers.get(containerId);
 
     if (container == null) {

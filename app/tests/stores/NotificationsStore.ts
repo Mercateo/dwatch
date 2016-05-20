@@ -7,8 +7,6 @@ describe('NotificationStore.ts', () => {
 
   beforeEach(() => {
     kernel.snapshot();
-    kernel.unbind(NotificationStore);
-    kernel.bind(NotificationStore).to(NotificationStore).inSingletonScope();
     store = kernel.get(NotificationStore);
   });
 

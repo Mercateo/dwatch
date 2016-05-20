@@ -6,6 +6,8 @@ declare module "dockerode" {
   interface Dockerode {
     new (opts?: Object): Dockerode;
 
+    getImage(imageName: string): any;
+    listImages(query: any, cb: (err: Error, data: Array<ShortContainerDescription>) => void): void;
     getContainer(containerId: string): any;
     listContainers(query: any, cb: (err: Error, data: Array<ShortContainerDescription>) => void): void;
     info(cb: (err: Error, data: any) => void): void;

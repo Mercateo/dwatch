@@ -5,6 +5,7 @@ import { injectIntl, InjectedIntlProps } from 'react-intl';
 import { ContainersCard } from './cards/ContainersCard';
 import { SystemCard } from './cards/SystemCard';
 import { inject } from '../../utils/IOC';
+import { ImagesCard } from './cards/ImagesCard';
 
 @injectIntl
 @observer
@@ -21,6 +22,7 @@ export class Home extends Component<{ intl: InjectedIntlProps }, {}> {
     return (
       <div className="mdl-grid">
         <ContainersCard/>
+        <ImagesCard/>
         <SystemCard/>
       </div>
     );

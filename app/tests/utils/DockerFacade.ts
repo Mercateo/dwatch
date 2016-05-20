@@ -132,15 +132,11 @@ describe('DockerFacade.ts', () => {
 
       bindMock(SettingsStore, settingsStoreMock);
 
-      kernel.unbind(NotificationStore);
-      kernel.bind(NotificationStore).to(NotificationStore);
       notificationStoreMock = kernel.get(NotificationStore);
 
       kernel.unbind(Dockerode);
       kernel.bind(Dockerode).toConstantValue(dockerodeMock);
 
-      kernel.unbind(DockerFacade);
-      kernel.bind(DockerFacade).to(DockerFacade);
       dockerFacade = kernel.get(DockerFacade);
 
       dockerodeInstance = (<any>dockerFacade).dockerode;

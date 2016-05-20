@@ -38,6 +38,10 @@ export function normalizeContainerName (name: string): string {
   return name.replace('/', '');
 }
 
+export function normalizeImageId(imageId: string): string {
+  return imageId.replace('sha256:', '');
+}
+
 export function parseLocale (locale: LOCALE): {fullLocale: string, country: string, language: string} {
   let [ language, country ] = LOCALE[ locale ]
     .split('_');

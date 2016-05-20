@@ -42,42 +42,13 @@ export class Containers extends Component<ContainersProps, {}> {
   }
 
   async componentWillMount () {
-    await this.loadContainers();
+    const { formatMessage } = this.props.intl;
+    this.uiStore.pageTitle = formatMessage({ id: 'containers.title' });
 
     this.setFilter(this.props);
 
-    const { formatMessage } = this.props.intl;
-    this.uiStore.pageTitle = formatMessage({ id: 'containers.title' });
-  }
-
-  async componentWillReceiveProps (nextProps: ContainersProps) {
     await this.loadContainers();
-
-    this.setFilter(nextProps);
   }
-
-  private setFilter(props: ContainersProps) {
-    const { query } = props.location;
-
-    if (query.showAll != null) {
-      this.showAllContainers = true;
-    }
-  }
-
-  private async loadContainers () {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.containerStore.loadContainers();
-      finishTask();
-    } catch (e) {
-      finishTask(e);
-    }
-  }
-
-  private changeFilter = () => {
-    this.showAllContainers = !this.showAllContainers;
-  };
 
   render () {
     let containers = this.containers;
@@ -187,4 +158,27 @@ export class Containers extends Component<ContainersProps, {}> {
       </div>
     );
   }
+
+  private setFilter(props: ContainersProps) {
+    const { query } = props.location;
+
+    if (query.showAll != null) {
+      this.showAllContainers = true;
+    }
+  }
+
+  private async loadContainers () {
+    const finishTask = this.uiStore.startAsyncTask();
+
+    try {
+      await this.containerStore.loadContainers();
+      finishTask();
+    } catch (e) {
+      finishTask(e);
+    }
+  }
+
+  private changeFilter = () => {
+    this.showAllContainers = !this.showAllContainers;
+  };
 }

@@ -25,6 +25,11 @@ export class AppDrawer extends Component<void, {}> {
                role="presentation">card_travel</i>
             <FormattedMessage id="containers.title"/>
           </a>
+          <a className={`${styles.navigationLink} mdl-navigation__link`} href="#/images">
+            <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
+               role="presentation">card_travel</i>
+            <FormattedMessage id="images.title"/>
+          </a>
           {/*<a className={`${styles.navigationLink} mdl-navigation__link`} href="#/images">Images</a>
           <a className={`${styles.navigationLink} mdl-navigation__link`} href="#/networks">
             <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}

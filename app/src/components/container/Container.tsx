@@ -67,18 +67,6 @@ export class Container extends Component<ContainerProps, {}> {
     }
   }
 
-  private async loadContainer (containerId: string) {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.containerStore.loadContainer(containerId);
-      finishTask();
-    } catch (e) {
-      hashHistory.replace('/containers');
-      finishTask(e);
-    }
-  }
-
   render () {
     if (this.container != null) {
       return (
@@ -100,6 +88,18 @@ export class Container extends Component<ContainerProps, {}> {
       );
     } else {
       return null;
+    }
+  }
+
+  private async loadContainer (containerId: string) {
+    const finishTask = this.uiStore.startAsyncTask();
+
+    try {
+      await this.containerStore.loadContainer(containerId);
+      finishTask();
+    } catch (e) {
+      hashHistory.replace('/containers');
+      finishTask(e);
     }
   }
 }
