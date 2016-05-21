@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Top } from '../../shared/Top';
+import { Top } from '../Top';
 import { MDLWrapper } from '../../shared/MDLWrapper';
 import { ContainerModel } from '../../../models/ContainerModel';
+import { observer } from 'mobx-react/index';
 
+@observer
 export class LiveFeedCard extends Component<{container: ContainerModel}, {}> {
   render () {
     const { container } = this.props;

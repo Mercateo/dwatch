@@ -1,12 +1,12 @@
 import React from 'react';
-import { DockerStreamComponent } from './DockerStreamComponent';
+import { DockerStreamComponent } from '../shared/DockerStreamComponent';
 import { observable } from 'mobx/lib/mobx';
 import { observer } from 'mobx-react/index';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { parseBytes } from '../../utils/Helper';
 import { ContainerModel, CONTAINER_RUN_STATE } from '../../models/ContainerModel';
 
-const styles = require('./Common.css');
+const styles = require('./../shared/Common.css');
 
 interface StatsStreamData {
   read: string;

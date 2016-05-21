@@ -9,6 +9,8 @@ import { ImageStore } from '../../stores/ImageStore';
 import { ImageModel } from '../../models/ImageModel';
 import { ImageCard } from './cards/ImageCard';
 import { normalizeImageId } from '../../utils/Helper';
+import { DetailCard } from './cards/DetailCard';
+import { HistoryCard } from './cards/HistoryCard';
 
 interface ImageProps {
   intl: InjectedIntlProps;
@@ -81,6 +83,8 @@ export class Image extends Component<ImageProps, {}> {
         <div>
           <div className="mdl-grid">
             <ImageCard image={this.image}/>
+            <DetailCard image={this.image}/>
+            <HistoryCard image={this.image}/>
           </div>
         </div>
       );

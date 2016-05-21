@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Stats } from '../../shared/Stats';
+import { Stats } from '../Stats';
 import { ContainerModel } from '../../../models/ContainerModel';
 
 export class StatsCard extends Component<{container: ContainerModel}, {}> {

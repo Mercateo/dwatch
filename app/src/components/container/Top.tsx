@@ -1,15 +1,15 @@
 import React from 'react';
 import { observer } from 'mobx-react/index';
-import { AutoRefreshComponent } from './AutoRefreshComponent';
+import { AutoRefreshComponent } from '../shared/AutoRefreshComponent';
 import { observable } from 'mobx/lib/mobx';
 import { UiStore } from '../../stores/UiStore';
 import { TopModel } from '../../utils/DockerFacade';
-import { MDLWrapper } from './MDLWrapper';
+import { MDLWrapper } from '../shared/MDLWrapper';
 import { FormattedMessage } from 'react-intl';
 import { ContainerModel, CONTAINER_RUN_STATE } from '../../models/ContainerModel';
 import { inject } from '../../utils/IOC';
 
-const styles = require('./Common.css');
+const styles = require('./../shared/Common.css');
 
 @observer
 export class Top extends AutoRefreshComponent<{container: ContainerModel}, {}> {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FormattedMessage, FormattedRelative } from 'react-intl';
+import { FormattedMessage, FormattedRelative, FormattedNumber } from 'react-intl';
 import { observer } from 'mobx-react/index';
 import { ImageModel } from '../../../models/ImageModel';
-import { normalizeImageId } from '../../../utils/Helper';
+import { normalizeImageId, parseBytes } from '../../../utils/Helper';
 
 const styles = require('./../../shared/Common.css');
 
@@ -10,6 +10,7 @@ const styles = require('./../../shared/Common.css');
 export class ImageCard extends Component<{image: ImageModel}, {}> {
   render () {
     const { image } = this.props;
+    let size = parseBytes(image.size);
 
     return (
       <div
@@ -48,6 +49,36 @@ export class ImageCard extends Component<{image: ImageModel}, {}> {
               <strong>
                 <FormattedRelative value={image.created.getTime() }/>
               </strong>
+            </li>
+          </ul>
+
+          <ul className={`${styles.inlineList}`}>
+            <li><FormattedMessage id="images.th.size"/></li>
+            <li>
+              <strong>
+                <FormattedNumber value={size.size}/>{ ' ' + size.unit }
+              </strong>
+            </li>
+          </ul>
+
+          <ul className={`${styles.inlineList}`}>
+            <li><FormattedMessage id="images.th.author"/></li>
+            <li>
+              <strong>{image.author}</strong>
+            </li>
+          </ul>
+
+          <ul className={`${styles.inlineList}`}>
+            <li><FormattedMessage id="images.th.os"/></li>
+            <li>
+              <strong>{image.os}</strong>
+            </li>
+          </ul>
+
+          <ul className={`${styles.inlineList}`}>
+            <li><FormattedMessage id="images.th.arch"/></li>
+            <li>
+              <strong>{image.arch}</strong>
             </li>
           </ul>
 

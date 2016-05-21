@@ -510,7 +510,7 @@ export class DockerFacade {
   // }
 
   // TODO: change it back and fix ts
-  private async fetchImages(options: Object = {}): Promise<any> { // Promise<Array<SummarizedImage>>
+  private async fetchImages(options: Object = {}): Promise<any> { // Promise<Array<Image>>
     return Promise.all(
       (await new Promise<Array<SummarizedImage>>((resolve, reject) => {
       this.dockerode.listImages(options, (err: any, images: Array<SummarizedImage>) => {
