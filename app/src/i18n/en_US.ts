@@ -44,12 +44,17 @@ export const en_US: I18NLanguage = {
   // images
   'images.title': 'Images',
   'images.th.id': 'Id',
+  'images.th.name': 'Name',
   'images.th.tags': 'Tags',
   'images.th.created': 'Created',
   'images.th.size': 'Size',
   'images.filter.showDangling': 'Show dangling',
   'images.actions.gc': 'Remove dangling images',
   'images.actions.gc.warning': 'Not all dangling images could be removed. They may be used by stopped containers.',
+
+  // image details
+  'image.title': 'Image {name}',
+  'image.header': 'Image',
 
   // container details
   'container.title': 'Container {name}',

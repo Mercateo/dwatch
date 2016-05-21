@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { normalizePort, parseBytes, normalizeContainerName, parseLocale } from '../../src/utils/Helper';
+import { normalizePort, parseBytes, normalizeContainerName, parseLocale, normalizeImageId } from '../../src/utils/Helper';
 import { LOCALE } from '../../src/stores/SettingsStore';
 
 describe('Helper.ts', () => {
@@ -10,6 +10,23 @@ describe('Helper.ts', () => {
 
       expect(parsedPort.port).toBe(9000);
       expect(parsedPort.protocol).toBe('tcp');
+    });
+
+    it('should throw with non fitting string passed in', () => {
+      expect(() => normalizePort('foo')).toThrow();
+      expect(() => normalizePort('foo/tcp')).toThrow();
+    });
+  });
+
+  describe('normalizeImageId', () => {
+    it('should probably normalize an image id', () => {
+      let imageId1 = 'sha256:test';
+      let imageId2 = 'test';
+      let parsedImageId1 = normalizeImageId(imageId1);
+      let parsedImageId2 = normalizeImageId(imageId2);
+
+      expect(parsedImageId1).toBe('test');
+      expect(parsedImageId2).toBe('test');
     });
 
     it('should throw with non fitting string passed in', () => {

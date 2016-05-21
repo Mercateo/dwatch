@@ -42,6 +42,18 @@ export function normalizeImageId(imageId: string): string {
   return imageId.replace('sha256:', '');
 }
 
+export function parseRepoTags(repoTags: Array<string>): { name: string, tags: Array<string> } {
+  if(repoTags == null || repoTags.length === 0) {
+    return null;
+  }
+  
+  return {
+    name: repoTags[0].split(':')[0],
+    tags: repoTags.map(repoTag => repoTag.split(':')[1])
+  }; 
+  
+}
+
 export function parseLocale (locale: LOCALE): {fullLocale: string, country: string, language: string} {
   let [ language, country ] = LOCALE[ locale ]
     .split('_');

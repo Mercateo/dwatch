@@ -60,13 +60,19 @@ export class Containers extends Component<ContainersProps, {}> {
     return (
       <div>
         <div className="mdl-grid">
-          <div className="mdl-cell mdl-cell--9-offset-desktop mdl-cell--3-col-desktop mdl-cell--4-col-phone">
-            <label>
-              <input type="checkbox"
-                     checked={this.showAllContainers}
-                     onChange={this.changeFilter}/>
-              <FormattedMessage id='containers.filter.showAll'/>
-            </label>
+          <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp" style={{ minHeight: '0px' }}>
+            <div className="mdl-card__supporting-text">
+              <ul className={`${styles.inlineList}`}>
+                <li>
+                  <label>
+                    <input type="checkbox"
+                           checked={this.showAllContainers}
+                           onChange={this.changeFilter}/>
+                    <FormattedMessage id='containers.filter.showAll'/>
+                  </label>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="mdl-grid">
@@ -140,14 +146,15 @@ export class Containers extends Component<ContainersProps, {}> {
                       {container.ports.map(port => {
                         let mapping = `${port[ 0 ].port}/${port[ 0 ].protocol}`;
 
-                        if(port[ 1 ] != null) {
+                        if (port[ 1 ] != null) {
                           mapping += ` -> ${port[ 1 ].ip}:${port[ 1 ].port}/${port[ 0 ].protocol}`;
                         }
 
                         return mapping
                       }).join(', ')}
                     </td>
-                    <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>{container.node != null ? `${container.node.name}/${container.name}` : container.name}</td>
+                    <td
+                      className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>{container.node != null ? `${container.node.name}/${container.name}` : container.name}</td>
                   </tr>
                 ))
               }
@@ -159,7 +166,7 @@ export class Containers extends Component<ContainersProps, {}> {
     );
   }
 
-  private setFilter(props: ContainersProps) {
+  private setFilter (props: ContainersProps) {
     const { query } = props.location;
 
     if (query.showAll != null) {

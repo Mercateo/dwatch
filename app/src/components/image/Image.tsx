@@ -7,6 +7,8 @@ import { hashHistory } from 'react-router';
 import { inject } from '../../utils/IOC';
 import { ImageStore } from '../../stores/ImageStore';
 import { ImageModel } from '../../models/ImageModel';
+import { ImageCard } from './cards/ImageCard';
+import { normalizeImageId } from '../../utils/Helper';
 
 interface ImageProps {
   intl: InjectedIntlProps;
@@ -43,7 +45,7 @@ export class Image extends Component<ImageProps, {}> {
 
     this.pageTitleDisposer = autorun(() => {
       if (this.image != null) {
-        this.uiStore.pageTitle = formatMessage({ id: 'image.title' }, { name: this.image.id });
+        this.uiStore.pageTitle = formatMessage({ id: 'image.title' }, { name: this.image.name || normalizeImageId(this.image.id).substr(0, 12) });
       }
     });
   }
@@ -56,7 +58,7 @@ export class Image extends Component<ImageProps, {}> {
   }
 
   componentWillUnmount (): any {
-    if(this.pageTitleDisposer != null) {
+    if (this.pageTitleDisposer != null) {
       this.pageTitleDisposer();
     }
   }
@@ -76,7 +78,11 @@ export class Image extends Component<ImageProps, {}> {
   render () {
     if (this.image != null) {
       return (
-       <p>Image</p>
+        <div>
+          <div className="mdl-grid">
+            <ImageCard image={this.image}/>
+          </div>
+        </div>
       );
     } else {
       return null;

@@ -160,6 +160,14 @@ describe('DockerFacade.ts', () => {
           cb('test', null);
         }
       });
+      
+      dockerodeInstance.listImages.andCall((cb: (err: any, data: any) => void) => {
+        if (!failActions) {
+          cb(null, [ { Id: 'sha256:test' }, { Id: 'sha256:test2' } ]);
+        } else {
+          cb('test', null);
+        }
+      });
 
       dockerodeContainerMock.inspect.andCall((query: Object, cb: (err: any, data: any) => void) => {
         if (!failActions) {

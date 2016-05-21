@@ -10,6 +10,7 @@ import { ImageModel } from '../../models/ImageModel';
 import { parseBytes, normalizeImageId } from '../../utils/Helper';
 import { AsyncButton } from '../shared/AsyncButton';
 import { Notification, NOTIFICATION_TYPE, NotificationStore } from '../../stores/NotificationStore';
+import { MDLWrapper } from '../shared/MDLWrapper';
 
 const styles = require('./../shared/Common.css');
 
@@ -59,21 +60,29 @@ export class Images extends Component<ImagesProps, {}> {
   render () {
     let images = this.images;
 
-    if(this.showDanglingImages) {
+    if (this.showDanglingImages) {
       images = this.danglingImages;
     }
 
     return (
       <div>
         <div className="mdl-grid">
-          <div className="mdl-cell mdl-cell--9-offset-desktop mdl-cell--3-col-desktop mdl-cell--4-col-phone">
-            <label>
-              <input type="checkbox"
-                     checked={this.showDanglingImages}
-                     onChange={this.changeFilter}/>
-              <FormattedMessage id='images.filter.showDangling'/>
-            </label>
-            {this.renderGCButton()}
+          <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp" style={{ minHeight: '0px' }}>
+            <div className="mdl-card__supporting-text">
+              <ul className={`${styles.inlineList}`}>
+                <li>
+                  <label>
+                    <input type="checkbox"
+                           checked={this.showDanglingImages}
+                           onChange={this.changeFilter}/>
+                    <FormattedMessage id='images.filter.showDangling'/>
+                  </label>
+                </li>
+              </ul>
+              <ul className={`${styles.inlineList}`}>
+                {this.renderGCButton()}
+              </ul>
+            </div>
           </div>
         </div>
         <div className="mdl-grid">
@@ -85,6 +94,10 @@ export class Images extends Component<ImagesProps, {}> {
                 <th className="mdl-data-table__cell--non-numeric">
                   <FormattedMessage
                     id='images.th.id'/>
+                </th>
+                <th className={`mdl-data-table__cell--non-numeric`}>
+                  <FormattedMessage
+                    id='images.th.name'/>
                 </th>
                 <th className={`mdl-data-table__cell--non-numeric`}>
                   <FormattedMessage
@@ -106,23 +119,29 @@ export class Images extends Component<ImagesProps, {}> {
                   let size = parseBytes(image.size);
 
                   return (
-                  <tr key={image.id}>
-                    <td className="mdl-data-table__cell--non-numeric">
-                      <Link to={`/images/${image.id}`}>{normalizeImageId(image.id).substr(0, 12)}</Link>
-                    </td>
-                    <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
+                    <tr key={image.id}>
+                      <td className="mdl-data-table__cell--non-numeric">
+                        <Link to={`/images/${image.id}`}>{normalizeImageId(image.id).substr(0, 12)}</Link>
+                      </td>
+                      <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
                         <span className="mdl-typography--body-1">
-                          {image.tags.join(', ')}
+                          {image.name}
                         </span>
-                    </td>
-                    <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
-                      <FormattedRelative value={image.created.getTime() }/>
-                    </td>
-                    <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
-                      <FormattedNumber value={size.size}/>{ ' ' + size.unit }
-                    </td>
-                  </tr>
-                )})
+                      </td>
+                      <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
+                        <span className="mdl-typography--body-1">
+                          {image.tags ? image.tags.join(', ') : null}
+                        </span>
+                      </td>
+                      <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
+                        <FormattedRelative value={image.created.getTime() }/>
+                      </td>
+                      <td className={`mdl-data-table__cell--non-numeric ${styles.wrap}`}>
+                        <FormattedNumber value={size.size}/>{ ' ' + size.unit }
+                      </td>
+                    </tr>
+                  )
+                })
               }
               </tbody>
             </table>
@@ -143,7 +162,7 @@ export class Images extends Component<ImagesProps, {}> {
     }
   }
 
-  private setFilter(props: ImagesProps) {
+  private setFilter (props: ImagesProps) {
     const { query } = props.location;
 
     if (query.showDangling != null) {
@@ -156,11 +175,16 @@ export class Images extends Component<ImagesProps, {}> {
   };
 
   private renderGCButton () {
-    if(this.showDanglingImages) {
+    if (this.showDanglingImages) {
       return (
-        <AsyncButton onClick={this.removeDanglingImages}>
-          <FormattedMessage id='images.actions.gc'/>
-        </AsyncButton>
+        <li>
+          <MDLWrapper>
+            <AsyncButton onClick={this.removeDanglingImages}
+                         className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+              <FormattedMessage id='images.actions.gc'/>
+            </AsyncButton>
+          </MDLWrapper>
+        </li>
       );
     } else {
       return null;

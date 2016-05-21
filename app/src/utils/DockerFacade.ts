@@ -236,83 +236,84 @@ export class Image {
   Os: string;
   Architecture: string;
   Parent: string;
-  // ContainerConfig : {
-  //   Tty: boolean;
-  //   Hostname: string;
-  //   Volumes" : null,
-  //   "Domainname" : "",
-  //   "AttachStdout" : false,
-  //   "PublishService" : "",
-  //   "AttachStdin" : false,
-  //   "OpenStdin" : false,
-  //   "StdinOnce" : false,
-  //   "NetworkDisabled" : false,
-  //   "OnBuild" : [],
-  //   "Image" : "91e54dfb11794fad694460162bf0cb0a4fa710cfa3f60979c177d920813e267c",
-  //   "User" : "",
-  //   "WorkingDir" : "",
-  //   "Entrypoint" : null,
-  //   "MacAddress" : "",
-  //   "AttachStderr" : false,
-  //   "Labels" : {
-  //     "com.example.license" : "GPL",
-  //     "com.example.version" : "1.0",
-  //     "com.example.vendor" : "Acme"
-  //   },
-  //   "Env" : [
-  //     "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-  //     ],
-  //   "ExposedPorts" : null,
-  //   "Cmd" : [
-  //     "/bin/sh",
-  //     "-c",
-  //     "#(nop) LABEL com.example.vendor=Acme com.example.license=GPL com.example.version=1.0"
-  //     ]
-  // },
+
+  ContainerConfig: {
+    Tty: boolean;
+    Hostname: string;
+    Volumes: {
+      [key: string]: {
+        [key: string]: string;
+      };
+    };
+    Domainname: string;
+    AttachStdout: boolean;
+    PublishService: string;
+    AttachStdin: boolean;
+    OpenStdin: boolean;
+    StdinOnce: boolean;
+    NetworkDisabled: boolean;
+    OnBuild: Array<string>;
+    Image: string;
+    User: string;
+    WorkingDir: string;
+    Entrypoint: Array<string>;
+    MacAddress: string;
+    AttachStderr: boolean;
+    Labels: {
+      [key: string]: string
+    },
+    Env: Array<string>;
+    ExposedPorts: Object;
+    Cmd: Array<string>;
+  };
+
   DockerVersion: string;
   VirtualSize: number;
   Size: number;
   Author: string;
   Created: string;
+
   // "GraphDriver" : {
   //   "Name" : "aufs",
   //   "Data" : null
   // },
+
   // "RepoDigests" : [
   //   "localhost:5000/test/busybox/example@sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf"
   //   ],
+
   RepoTags: Array<string>;
-  // Config : {
-  //   "Image" : "91e54dfb11794fad694460162bf0cb0a4fa710cfa3f60979c177d920813e267c",
-  //   "NetworkDisabled" : false,
-  //   "OnBuild" : [],
-  //   "StdinOnce" : false,
-  //   "PublishService" : "",
-  //   "AttachStdin" : false,
-  //   "OpenStdin" : false,
-  //   "Domainname" : "",
-  //   "AttachStdout" : false,
-  //   "Tty" : false,
-  //   "Hostname" : "e611e15f9c9d",
-  //   "Volumes" : null,
-  //   "Cmd" : [
-  //     "/bin/bash"
-  //     ],
-  //   "ExposedPorts" : null,
-  //   "Env" : [
-  //     "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-  //     ],
-  //   "Labels" : {
-  //     "com.example.vendor" : "Acme",
-  //     "com.example.version" : "1.0",
-  //     "com.example.license" : "GPL"
-  //   },
-  //   "Entrypoint" : null,
-  //   "MacAddress" : "",
-  //   "AttachStderr" : false,
-  //   "WorkingDir" : "",
-  //   "User" : ""
-  // },
+
+  Config: {
+    Image: string;
+    NetworkDisabled: boolean;
+    OnBuild: Array<string>;
+    StdinOnce: boolean;
+    PublishService: string;
+    AttachStdin: boolean;
+    OpenStdin: boolean;
+    Domainname: string;
+    AttachStdout: boolean;
+    Tty: boolean;
+    Hostname: string;
+    Volumes: {
+      [key: string]: {
+        [key: string]: string;
+      };
+    };
+    Cmd: Array<string>;
+    ExposedPorts: Object;
+    Env: Array<string>;
+    Labels: {
+      [key: string]: string;
+    };
+    Entrypoint: Array<string>;
+    MacAddress: string;
+    AttachStderr: boolean;
+    WorkingDir: string;
+    User: string;
+  };
+
   // "RootFS": {
   //   "Type": "layers",
   //   "Layers": [

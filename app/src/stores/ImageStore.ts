@@ -25,7 +25,8 @@ export class ImageStore {
   }
 
   async loadImages (): Promise<void> {
-    // there is now way to get dangling state from remote api without querying for dangling images
+    // there is now way to get dangling state from remote api without querying for dangling images,
+    // because its a information from the image store not the image itself
     // (see https://github.com/docker/docker/issues/22859#issuecomment-220682319)
     let danglingImages = await this.docker.listDanglingImages();
     let images: Array<ImageModel> = (await this.docker.listImages())
@@ -60,7 +61,7 @@ export class ImageStore {
     if(danglingImages.find(x => x.Id === image.id)) {
       image.dangling = true;
     }
-    
+
     this.images.set(image.id, image);
   }
 

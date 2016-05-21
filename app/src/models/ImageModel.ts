@@ -1,8 +1,9 @@
 import { Image } from '../utils/DockerFacade';
-import { normalizeImageId } from '../utils/Helper';
+import { parseRepoTags } from '../utils/Helper';
 
 export class ImageModel {
   id: string;
+  name: string;
   tags: Array<string>;
   created: Date;
   size: number;
@@ -10,7 +11,13 @@ export class ImageModel {
 
   constructor (private image: Image) {
     this.id = image.Id;
-    this.tags = image.RepoTags;
+    
+    let parsedRepoTags = parseRepoTags(image.RepoTags);
+    if(parsedRepoTags != null) {
+      this.name = parsedRepoTags.name;
+      this.tags = parsedRepoTags.tags;
+    }
+    
     this.created = new Date(image.Created);
     this.size = image.Size;
     this.dangling = false;

@@ -6,11 +6,15 @@ export function getDockerodeContainerDataMock(): any {
 
 class DockerodeMock {
   getContainer = createSpy();
-  
+
   version = createSpy();
-  
+
   listContainers = createSpy();
-  
+
+  listImages = createSpy();
+
+  getImage= createSpy();
+
   modem = {
     dial: createSpy()
   }
@@ -21,6 +25,13 @@ export function getDockerodeMock(): any {
 }
 
 export function getDockerodeContainerMock (): any {
+  return {
+    remove: createSpy(),
+    inspect: createSpy()
+  };
+}
+
+export function getDockerodeImageMock (): any {
   return {
     remove: createSpy(),
     inspect: createSpy()
