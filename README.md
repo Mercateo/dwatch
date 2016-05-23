@@ -8,7 +8,8 @@ at the [release page](https://github.com/Mercateo/dwatch/releases).
 
 If you find bugs please file an issue.
 
-<img src="assets/screenshot_1.png" alt="Screenshot dashboard" width="33%"/> <img src="assets/screenshot_2.png" alt="Screenshot containers" width="33%"/> <img src="assets/screenshot_3.png" alt="Screenshot container detail" width="32%"/>
+<img src="assets/screenshot_1.png" alt="Screenshot dashboard" width="50%"/> <img src="assets/screenshot_2.png" alt="Screenshot containers" width="50%"/>
+<img src="assets/screenshot_3.png" alt="Screenshot container detail" width="50%"/> <img src="assets/screenshot_4.png" alt="Screenshot image detail" width="50%"/>
 
 ##Motivation
 Im a big fan of docker and how it simplifies my daily work. No more ```npm install``` for 50+ projects, you know what I mean :)
