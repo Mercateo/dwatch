@@ -78,8 +78,6 @@ export class Images extends Component<ImagesProps, {}> {
                     <FormattedMessage id='images.filter.showDangling'/>
                   </label>
                 </li>
-              </ul>
-              <ul className={`${styles.inlineList}`}>
                 {this.renderGCButton()}
               </ul>
             </div>

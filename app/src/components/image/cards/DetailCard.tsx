@@ -20,13 +20,7 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           <ul className={`${styles.inlineList}`}>
             <li><FormattedMessage id="image.detail.cmd"/></li>
             <li>
-              <ul className={styles.unstyledList}>
-                { this.props.image.cmd.map((cmd, index) => (
-                  <li key={index}>
-                    <strong>{cmd}</strong>
-                  </li>
-                )) }
-              </ul>
+              <strong>{this.props.image.cmd.join(' ')}</strong>
             </li>
           </ul>
 

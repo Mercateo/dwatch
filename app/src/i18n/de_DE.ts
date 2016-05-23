@@ -14,6 +14,10 @@ export const de_DE : I18NLanguage = {
   'home.containers.supportingText': 'Sehen Sie laufende und gestoppte Container auf einen Blick.',
   'home.containers.all': '{count, number} Container',
   'home.containers.running': '{count, number} online',
+  'home.images': 'Images',
+  'home.images.supportingText': 'Sehen Sie eine Liste aller Images.',
+  'home.images.all': '{count, number} images',
+  'home.images.dangling': '{count, number} dangling',
   'home.system': 'System',
   'home.system.server-version': 'Server Version',
   'home.system.os': 'Betriebssystem',
@@ -62,6 +66,37 @@ export const de_DE : I18NLanguage = {
   'container.action.unpause': 'Erneut starten',
   'container.action.stop': 'Stoppen',
   'container.action.remove': 'Löschen',
+
+  // images
+  'images.title': 'Images',
+  'images.th.id': 'Id',
+  'images.th.name': 'Name',
+  'images.th.tags': 'Tags',
+  'images.th.created': 'Angelegt',
+  'images.th.size': 'Größe',
+  'images.filter.showDangling': 'Dangling Images anzeigen',
+  'images.actions.gc': 'Dangling Images etnfernen',
+  'images.actions.gc.warning': 'Es konnten nicht alle dangling Images entfernt werden. Vielleicht werden Sie noch von gestoppten Containern verwendet.',
+
+  // image details
+  'image.title': 'Image {name}',
+  'image.header': 'Image',
+  'image.details': 'Details',
+  'image.detail.author': 'Autor',
+  'image.detail.os': 'Betriebssystem',
+  'image.detail.arch': 'Architektur',
+  'image.detail.cmd': 'Kommandos',
+  'image.detail.cwd': 'Arbeitsverzeichnis',
+  'image.detail.environment': 'Umgebung',
+  'image.detail.entrypoint': 'Einsprungspunkt',
+  'image.detail.exposed-ports': 'Bereitgestellte Ports',
+  'image.detail.volumes': 'Volumes',
+  'image.action.remove': 'Entfernen',
+  'image.action.remove.warning': 'Das Image konnte nicht gelsöcht werden. Es wird vielleicht noch von einem gestoppten Container verwendet.',
+
+  // image history
+  'image.history.title': 'Historie',
+  'image.history.created-by': 'Erstellt von',
 
   //settings
   'settings.title': 'Einstellungen',

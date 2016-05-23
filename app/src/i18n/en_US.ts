@@ -41,6 +41,32 @@ export const en_US: I18NLanguage = {
   'containers.state.EXITED': 'Exited',
   'containers.state.RUNNING': 'Up',
 
+  // container details
+  'container.title': 'Container {name}',
+  'container.header': 'Container',
+  'container.detail.header': 'Details',
+  'container.network.header': 'Network',
+  'container.stats.header': 'Metrics',
+  'container.detail.commands': 'Commands',
+  'container.detail.arguments': 'Arguments',
+  'container.detail.environment': 'Environment',
+  'container.detail.pwd': 'Working dir',
+  'container.live.title': 'Live data',
+  'container.live.top': 'Top',
+
+  // container node details
+  'container.node.header': 'Node',
+  'container.node.name': 'Name',
+  'container.node.cpuCount': 'CPU Share',
+  'container.node.memoryLimit': 'RAM',
+  'container.node.ip': 'IP',
+
+  'container.action.start': 'Start',
+  'container.action.pause': 'Pause',
+  'container.action.unpause': 'Unpause',
+  'container.action.stop': 'Stop',
+  'container.action.remove': 'Remove',
+
   // images
   'images.title': 'Images',
   'images.th.id': 'Id',
@@ -71,32 +97,6 @@ export const en_US: I18NLanguage = {
   // image history
   'image.history.title': 'Creation history',
   'image.history.created-by': 'By',
-
-  // container details
-  'container.title': 'Container {name}',
-  'container.header': 'Container',
-  'container.detail.header': 'Details',
-  'container.network.header': 'Network',
-  'container.stats.header': 'Metrics',
-  'container.detail.commands': 'Commands',
-  'container.detail.arguments': 'Arguments',
-  'container.detail.environment': 'Environment',
-  'container.detail.pwd': 'Working dir',
-  'container.live.title': 'Live data',
-  'container.live.top': 'Top',
-
-  // container node details
-  'container.node.header': 'Node',
-  'container.node.name': 'Name',
-  'container.node.cpuCount': 'CPU Share',
-  'container.node.memoryLimit': 'RAM',
-  'container.node.ip': 'IP',
-
-  'container.action.start': 'Start',
-  'container.action.pause': 'Pause',
-  'container.action.unpause': 'Unpause',
-  'container.action.stop': 'Stop',
-  'container.action.remove': 'Remove',
 
   //settings
   'settings.title': 'Settings',

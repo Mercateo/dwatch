@@ -27,7 +27,7 @@ export class AppDrawer extends Component<void, {}> {
           </a>
           <a className={`${styles.navigationLink} mdl-navigation__link`} href="#/images">
             <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
-               role="presentation">card_travel</i>
+               role="presentation">assignment</i>
             <FormattedMessage id="images.title"/>
           </a>
           {/*<a className={`${styles.navigationLink} mdl-navigation__link`} href="#/images">Images</a>
