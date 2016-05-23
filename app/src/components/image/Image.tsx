@@ -65,6 +65,24 @@ export class Image extends Component<ImageProps, {}> {
     }
   }
 
+  render () {
+    if (this.image != null) {
+      return (
+        <div>
+          <div className="mdl-grid">
+            <ImageCard image={this.image}/>
+
+            <DetailCard image={this.image}/>
+
+            <HistoryCard image={this.image}/>
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   private async loadImage (imageId: string) {
     const finishTask = this.uiStore.startAsyncTask();
 
@@ -72,24 +90,8 @@ export class Image extends Component<ImageProps, {}> {
       await this.imageStore.loadImage(imageId);
       finishTask();
     } catch (e) {
-      hashHistory.replace('/containers');
+      hashHistory.replace('/images');
       finishTask(e);
-    }
-  }
-
-  render () {
-    if (this.image != null) {
-      return (
-        <div>
-          <div className="mdl-grid">
-            <ImageCard image={this.image}/>
-            <DetailCard image={this.image}/>
-            <HistoryCard image={this.image}/>
-          </div>
-        </div>
-      );
-    } else {
-      return null;
     }
   }
 }

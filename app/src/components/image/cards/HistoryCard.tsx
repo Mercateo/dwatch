@@ -49,19 +49,19 @@ export class HistoryCard extends Component<HistoryCardProps, {}> {
               </th>
               <th className="mdl-data-table__cell--non-numeric">
                 <FormattedMessage
-                  id='image.history.id'/>
+                  id='images.th.id'/>
               </th>
               <th className="mdl-data-table__cell--non-numeric">
                 <FormattedMessage
-                  id='image.history.tags'/>
+                  id='images.th.tags'/>
               </th>
               <th className="mdl-data-table__cell--non-numeric">
                 <FormattedMessage
-                  id='image.history.size'/>
+                  id='images.th.size'/>
               </th>
               <th className="mdl-data-table__cell--non-numeric">
                 <FormattedMessage
-                  id='image.history.created'/>
+                  id='images.th.created'/>
               </th>
             </tr>
             </thead>

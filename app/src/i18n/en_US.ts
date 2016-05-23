@@ -55,6 +55,22 @@ export const en_US: I18NLanguage = {
   // image details
   'image.title': 'Image {name}',
   'image.header': 'Image',
+  'image.details': 'Details',
+  'image.detail.author': 'Author',
+  'image.detail.os': 'OS',
+  'image.detail.arch': 'Architecture',
+  'image.detail.cmd': 'Commands',
+  'image.detail.cwd': 'Working dir',
+  'image.detail.environment': 'Environment',
+  'image.detail.entrypoint': 'Entrypoint',
+  'image.detail.exposed-ports': 'Exposed ports',
+  'image.detail.volumes': 'Volumes',
+  'image.action.remove': 'Remove',
+  'image.action.remove.warning': 'Image could not be removed. Its may be used by a (stopped) container.',
+
+  // image history
+  'image.history.title': 'Creation history',
+  'image.history.created-by': 'By',
 
   // container details
   'container.title': 'Container {name}',

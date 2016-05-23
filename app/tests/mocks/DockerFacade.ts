@@ -1,5 +1,6 @@
 import { createSpy } from 'expect';
 import { TopModel, Version } from '../../src/utils/DockerFacade';
+import { HistoryEntry } from '../../src/models/ImageModel';
 
 export function getContainerResponseMock (): any {
   return {
@@ -47,10 +48,53 @@ export function getContainerResponseMock (): any {
   }
 }
 
+export function getImageResponseMock(): any {
+  return {
+    Architecture: 'amd64',
+    Author: 'Brian Palmer <brian@codekitchen.net>',
+    Config: {
+      Cmd: [ 'bin', '-sh' ],
+      Entrypoint: [ 'test1.sh', 'test2.sh' ],
+      Env: [ 'TEST_VAR=5'],
+      ExposedPorts: {
+        '9000/tcp': null,
+        '8080/udp': null,
+      },
+      User: 'TestUser',
+      Volumes: {
+        '/temp/tmp': null
+      },
+      WorkingDir: '/app'
+    },
+    Created: '2016-05-20T16:14:30.654638605Z',
+    Id: 'sha256:9cfad7bf4e016fb7191140fb23537636bc186ffebff82e4f9b0a04422fcf1532',
+    Os: 'linux',
+    RepoTags: [
+      'test:0.15',
+      'test:latest',
+    ],
+    Size: 267464419,
+    VirtualSize: 267464419,
+
+    history: createSpy()
+  };
+}
+
 export function getDockerTopMock (): TopModel {
   return {
     Processes: [ [ 'top' ] ],
     Titles: [ 'name' ]
+  };
+}
+
+export function getImageHistoryMock (): HistoryEntry {
+  return {
+    Comment: 'test',
+    Created: new Date().getTime(),
+    CreatedBy: 'user',
+    Id: 'myId',
+    Size: 100000,
+    Tags: [ 'tag' ]
   };
 }
 

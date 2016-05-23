@@ -22,3 +22,17 @@ export function bindMock(target: any, mock: any) {
   kernel.unbind(target);
   kernel.bind(target).toConstantValue(mock);
 }
+
+export function getDockerEvent (id: string, action: string): any {
+  return {
+    id,
+    Action: action
+  };
+}
+
+export function getDockerSwarmEvent (id: string, status: string): any {
+  return {
+    id,
+    status
+  };
+}

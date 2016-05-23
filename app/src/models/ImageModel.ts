@@ -31,7 +31,6 @@ export class ImageModel {
   environment: Array<string>;
 
   constructor (private image: Image) {
-    console.log(image)
     this.id = image.Id;
 
     let parsedRepoTags = parseRepoTags(image.RepoTags);

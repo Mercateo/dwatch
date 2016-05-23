@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { FormattedMessage, FormattedRelative } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { observer } from 'mobx-react/index';
 import { ImageModel } from '../../../models/ImageModel';
-import { normalizeImageId } from '../../../utils/Helper';
 
 const styles = require('./../../shared/Common.css');
 
@@ -19,7 +18,7 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
         </div>
         <div className="mdl-card__supporting-text">
           <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.cmd"/></li>
+            <li><FormattedMessage id="image.detail.cmd"/></li>
             <li>
               <ul className={styles.unstyledList}>
                 { this.props.image.cmd.map((cmd, index) => (
@@ -32,14 +31,14 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           </ul>
 
           <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.cwd"/></li>
+            <li><FormattedMessage id="image.detail.cwd"/></li>
             <li>
               <strong>{this.props.image.workingDir}</strong>
             </li>
           </ul>
 
           <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.environment"/></li>
+            <li><FormattedMessage id="image.detail.environment"/></li>
             <li>
               <ul className={styles.unstyledList}>
                 { this.props.image.environment.map((env, index) => (
@@ -52,7 +51,7 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           </ul>
 
           <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.entrypoint"/></li>
+            <li><FormattedMessage id="image.detail.entrypoint"/></li>
             <li>
               <ul className={styles.unstyledList}>
                 { this.props.image.entrypoints.map((entrypoint, index) => (
@@ -65,7 +64,7 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           </ul>
 
           <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.exposed-ports"/></li>
+            <li><FormattedMessage id="image.detail.exposed-ports"/></li>
             <li>
               <ul className={styles.unstyledList}>
                 { this.props.image.exposedPorts.map((port, index) => (
@@ -78,7 +77,7 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           </ul>
 
           <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.volumes"/></li>
+            <li><FormattedMessage id="image.detail.volumes"/></li>
             <li>
               <ul className={styles.unstyledList}>
                 { this.props.image.volumes.map((volume, index) => (

@@ -394,7 +394,6 @@ export class DockerFacade {
           return;
         }
 
-        console.log(event)
         this.eventListeners.forEach(cb => cb(event));
       });
     });
@@ -443,7 +442,7 @@ export class DockerFacade {
 
   listDanglingImages(): Promise<Array<Image>> {
     return this.fetchImages({
-      filters: { dangling: [ "true" ] }
+      filters: { dangling: [ 'true' ] }
     });
   }
 

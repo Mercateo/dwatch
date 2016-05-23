@@ -37,3 +37,7 @@ export function getDockerodeImageMock (): any {
     inspect: createSpy()
   };
 }
+
+export function getDockerodeImageDataMock(): any {
+  return {};
+}

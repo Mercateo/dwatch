@@ -1,7 +1,7 @@
 import expect from 'expect';
-import { Container, TopModel, DockerFacade, Version } from '../../src/utils/DockerFacade';
-import { getDockerTopMock, getVersionResponseMock } from '../mocks/DockerFacade';
-import { getDockerodeMock, getDockerodeContainerDataMock, getDockerodeContainerMock } from '../mocks/Dockerode';
+import { Container, TopModel, DockerFacade, Version, Image } from '../../src/utils/DockerFacade';
+import { getDockerTopMock, getVersionResponseMock, getImageHistoryMock } from '../mocks/DockerFacade';
+import { getDockerodeMock, getDockerodeContainerDataMock, getDockerodeContainerMock, getDockerodeImageMock, getDockerodeImageDataMock } from '../mocks/Dockerode';
 import { NotificationStore } from '../../src/stores/NotificationStore';
 import { SettingsStore } from '../../src/stores/SettingsStore';
 import { bindMock } from '../mocks/Helper';
@@ -107,6 +107,51 @@ describe('DockerFacade.ts', () => {
     });
   });
 
+  describe('Image', () => {
+    let failActions = false;
+
+    let image: Image;
+    let dockerodeImageMock: Mock<Image>;
+    let imageHistoryMock;
+
+    beforeEach(() => {
+      failActions = false;
+
+      dockerodeImageMock = Mock.of(Image);
+      imageHistoryMock = getImageHistoryMock();
+
+      dockerodeImageMock.spyOn(x => x.history()).andCall((cb: (err: any, data: TopModel) => void) => {
+        if (!failActions) {
+          cb(null, imageHistoryMock);
+        } else {
+          cb('test', null);
+        }
+      });
+
+      image = new Image({}, dockerodeImageMock.mock);
+    });
+
+    it('should be able to receive image history (and receive exceptions)', async () => {
+      let historySpy = dockerodeImageMock.spyOn(x => x.history());
+      expect(historySpy).toNotHaveBeenCalled();
+
+      let history = await image.history();
+      expect(historySpy).toHaveBeenCalled();
+      expect(history).toEqual(imageHistoryMock);
+
+      (<any>historySpy).reset();
+      failActions = true;
+
+      expect(historySpy).toNotHaveBeenCalled();
+      try {
+        await image.history();
+      } catch (e) {
+        expect(historySpy).toHaveBeenCalled();
+        expect(e).toBe('test');
+      }
+    });
+  });
+
   describe('DockerFacade', () => {
     let dockerFacade: DockerFacade;
     let notificationStoreMock;
@@ -115,6 +160,8 @@ describe('DockerFacade.ts', () => {
     let dockerodeContainerMock;
     let dockerodeInstance;
     let dockerodeContainerDataMock;
+    let dockerodeImageMock;
+    let dockerodeImageDataMock;
     let versionResponseMock;
     let failActions;
 
@@ -124,6 +171,9 @@ describe('DockerFacade.ts', () => {
 
       dockerodeMock = getDockerodeMock();
       dockerodeContainerMock = getDockerodeContainerMock();
+
+      dockerodeImageMock = getDockerodeImageMock();
+      dockerodeImageDataMock = getDockerodeImageDataMock();
 
       dockerodeContainerDataMock = getDockerodeContainerDataMock();
       versionResponseMock = getVersionResponseMock();
@@ -144,6 +194,7 @@ describe('DockerFacade.ts', () => {
 
     beforeEach(() => {
       dockerodeInstance.getContainer.andReturn(dockerodeContainerMock);
+      dockerodeInstance.getImage.andReturn(dockerodeImageMock);
 
       dockerodeInstance.listContainers.andCall((options: Object, cb: (err: any, containers: Array<any>) => void) => {
         if (!failActions) {
@@ -153,15 +204,15 @@ describe('DockerFacade.ts', () => {
         }
       });
 
-      dockerodeInstance.version.andCall((cb: ((err: any, data: Version) => void)) => {
+      dockerodeInstance.version.andCall((cb: (err: any, data: Version) => void) => {
         if (!failActions) {
           cb(null, versionResponseMock);
         } else {
           cb('test', null);
         }
       });
-      
-      dockerodeInstance.listImages.andCall((cb: (err: any, data: any) => void) => {
+
+      dockerodeInstance.listImages.andCall((query: Object, cb: (err: any, data: any) => void) => {
         if (!failActions) {
           cb(null, [ { Id: 'sha256:test' }, { Id: 'sha256:test2' } ]);
         } else {
@@ -178,6 +229,22 @@ describe('DockerFacade.ts', () => {
       });
 
       dockerodeContainerMock.remove.andCall((query: Object, cb: (err: any) => void) => {
+        if (!failActions) {
+          cb(null);
+        } else {
+          cb('test');
+        }
+      });
+
+      dockerodeImageMock.inspect.andCall((cb: (err: any, data: any) => void) => {
+        if (!failActions) {
+          cb(null, dockerodeImageDataMock);
+        } else {
+          cb('test', null);
+        }
+      });
+
+      dockerodeImageMock.remove.andCall((query: Object, cb: (err: any) => void) => {
         if (!failActions) {
           cb(null);
         } else {
@@ -254,6 +321,86 @@ describe('DockerFacade.ts', () => {
       failActions = true;
       try {
         await dockerFacade.listAllContainers();
+      } catch (e) {
+        expect(e).toBe('test');
+      }
+    });
+
+    it('should let me fetch an image by id', async () => {
+      expect(dockerodeInstance.getImage).toNotHaveBeenCalled();
+      expect(dockerodeImageMock.inspect).toNotHaveBeenCalled();
+
+      let image: Image = await dockerFacade.getImage('test');
+
+      expect(dockerodeInstance.getImage).toHaveBeenCalledWith('test');
+      expect(dockerodeImageMock.inspect).toHaveBeenCalled();
+      expect(image).toBeA(Image);
+
+      failActions = true;
+      try {
+        await dockerFacade.getImage('test');
+      } catch (e) {
+        expect(e).toBe('test');
+      }
+    });
+
+    it('should let me remove an image by id', async () => {
+      expect(dockerodeInstance.getImage).toNotHaveBeenCalled();
+      expect(dockerodeImageMock.remove).toNotHaveBeenCalled();
+
+      await dockerFacade.removeImage('test');
+
+      expect(dockerodeInstance.getImage).toHaveBeenCalledWith('test');
+      expect(dockerodeImageMock.remove).toHaveBeenCalled();
+
+      failActions = true;
+      try {
+        await dockerFacade.removeImage('test');
+      } catch (e) {
+        expect(e).toBe('test');
+      }
+    });
+
+    it('should let me fetch all images', async () => {
+      let spy = spyOn(dockerFacade, 'getImage').andReturn(new Promise((resolve, reject) => resolve({})));
+
+      expect(dockerodeInstance.listImages).toNotHaveBeenCalled();
+      expect(dockerFacade.getImage).toNotHaveBeenCalled();
+
+      let containers: Array<Image> = await dockerFacade.listImages();
+
+      expect(dockerodeInstance.listImages).toHaveBeenCalled();
+      expect(spy.calls.length).toBe(2);
+      expect(spy.calls[ 0 ].arguments).toEqual([ 'sha256:test' ]);
+      expect(spy.calls[ 1 ].arguments).toEqual([ 'sha256:test2' ]);
+      expect(containers).toEqual([ {}, {} ]);
+
+      failActions = true;
+      try {
+        await dockerFacade.listImages();
+      } catch (e) {
+        expect(e).toBe('test');
+      }
+    });
+
+    it('should let me fetch all dangling images', async () => {
+      let spy = spyOn(dockerFacade, 'getImage').andReturn(new Promise((resolve, reject) => resolve({})));
+
+      expect(dockerodeInstance.listImages).toNotHaveBeenCalled();
+      expect(dockerFacade.getImage).toNotHaveBeenCalled();
+
+      let containers: Array<Image> = await dockerFacade.listDanglingImages();
+
+      expect(dockerodeInstance.listImages).toHaveBeenCalled();
+      expect(dockerodeInstance.listImages.getLastCall().arguments[0]).toEqual({ filters: { dangling: [ 'true' ]}});
+      expect(spy.calls.length).toBe(2);
+      expect(spy.calls[ 0 ].arguments).toEqual([ 'sha256:test' ]);
+      expect(spy.calls[ 1 ].arguments).toEqual([ 'sha256:test2' ]);
+      expect(containers).toEqual([ {}, {} ]);
+
+      failActions = true;
+      try {
+        await dockerFacade.listImages();
       } catch (e) {
         expect(e).toBe('test');
       }
