@@ -15,7 +15,7 @@ export const en_US: I18NLanguage = {
   'home.containers.all': '{count, number} containers',
   'home.containers.running': '{count, number} online',
   'home.images': 'Images',
-  'home.images.supportingText': 'A list of all images',
+  'home.images.supportingText': 'A list of all images.',
   'home.images.all': '{count, number} images',
   'home.images.dangling': '{count, number} dangling',
   'home.system': 'System',

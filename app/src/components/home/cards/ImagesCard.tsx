@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { CONTAINER_RUN_STATE } from '../../../models/ContainerModel';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { computed } from 'mobx/lib/mobx';
-import { ContainerStore } from '../../../stores/ContainerStore';
 import { inject } from '../../../utils/IOC';
 import { UiStore } from '../../../stores/UiStore';
 import { observer } from 'mobx-react/index';
@@ -10,6 +8,7 @@ import { ImageStore } from '../../../stores/ImageStore';
 
 const styles = require('./../../shared/Common.css');
 
+@injectIntl
 @observer
 export class ImagesCard extends Component<void, {}> {
   @inject(UiStore)

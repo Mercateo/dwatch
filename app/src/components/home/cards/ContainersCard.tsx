@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { CONTAINER_RUN_STATE } from '../../../models/ContainerModel';
 import { computed } from 'mobx/lib/mobx';
 import { ContainerStore } from '../../../stores/ContainerStore';
@@ -9,6 +9,7 @@ import { observer } from 'mobx-react/index';
 
 const styles = require('./../../shared/Common.css');
 
+@injectIntl
 @observer
 export class ContainersCard extends Component<void, {}> {
   @inject(UiStore)

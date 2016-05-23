@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormattedMessage, FormattedDate } from 'react-intl';
+import { FormattedMessage, FormattedDate, injectIntl } from 'react-intl';
 import { inject } from '../../../utils/IOC';
 import { DockerSystemStore } from '../../../stores/DockerSystemStore';
 import { observer } from 'mobx-react/index';
@@ -7,6 +7,7 @@ import { UiStore } from '../../../stores/UiStore';
 
 const styles = require('./../../shared/Common.css');
 
+@injectIntl
 @observer
 export class SystemCard extends Component<void, {}> {
   @inject(UiStore)
