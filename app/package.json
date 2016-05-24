@@ -7,12 +7,7 @@
     "name": "Benjamin Otto",
     "email": "benjamin.otto@mercateo.com"
   },
-  "licenses": [
-    {
-      "type": "Apache-2.0",
-      "url": "https://github.com/Mercateo/dwatch/blob/master/LICENSE.md"
-    }
-  ],
+  "license": "Apache-2.0",
   "homepage": "https://github.com/Mercateo/dwatch",
   "repository": {
     "type": "git",
