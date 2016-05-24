@@ -1,6 +1,6 @@
 {
   "name": "DWatch",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Manage your docker containers, images and networks in a nice and clean way.",
   "main": "index.js",
   "author": {

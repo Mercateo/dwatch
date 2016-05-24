@@ -190,16 +190,20 @@ export class Images extends Component<ImagesProps, {}> {
   }
 
   private removeDanglingImages = async () => {
-    return Promise
-      .all(this.danglingImages.map(image => this.imageStore.removeImage(image.id)))
-      .catch(() => {
-        const notification: Notification = {
-          type: NOTIFICATION_TYPE.WARNING,
-          message: this.props.intl.formatMessage({ id: 'images.actions.gc.warning' }),
-          timeout: 5000
-        };
+    const finishTask = this.uiStore.startAsyncTask();
 
-        this.notificationStore.notifications.push(notification);
-      });
+    try {
+      await Promise.all(this.danglingImages.map(image => this.imageStore.removeImage(image.id)));
+    } catch(e) {
+      const notification: Notification = {
+        type: NOTIFICATION_TYPE.WARNING,
+        message: this.props.intl.formatMessage({ id: 'images.actions.gc.warning' }),
+        timeout: 5000
+      };
+
+      this.notificationStore.notifications.push(notification);
+    } finally {
+      finishTask();
+    }
   };
 }
