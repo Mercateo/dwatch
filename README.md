@@ -29,7 +29,6 @@ And for build, testing and distributing: webpack, babel, karma, electron, electr
 Thanks to all participating devs for such great tools :)
 
 ##Roadmap and missing features
-* images
 * networks
 * volumes
 * cluster view (nodes)

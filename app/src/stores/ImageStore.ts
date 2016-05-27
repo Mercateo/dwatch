@@ -1,5 +1,5 @@
 import { DockerFacade, DockerEvent, DockerSwarmEvent } from '../utils/DockerFacade';
-import { transaction, map } from 'mobx/lib/mobx';
+import { transaction, map, observable, asMap, ObservableMap } from 'mobx/lib/mobx';
 import { inject, provideSingleton } from '../utils/IOC';
 import { ImageModel } from '../models/ImageModel';
 
@@ -8,7 +8,8 @@ export class ImageStore {
   @inject(DockerFacade)
   private docker: DockerFacade;
 
-  images = map<ImageModel>();
+  @observable
+  images = asMap<ImageModel>();
 
   constructor () {
     this.docker.onEvent(event => {

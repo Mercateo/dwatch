@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react/index';
 import { FormattedMessage, FormattedRelative, InjectedIntlProps, injectIntl } from 'react-intl';
 import { UiStore } from '../../stores/UiStore';
-import { observable, computed } from 'mobx/lib/mobx';
+import { observable, computed, action } from 'mobx/lib/mobx';
 import { Link } from 'react-router';
 import { ContainerStore } from '../../stores/ContainerStore';
 import { CONTAINER_RUN_STATE, CONTAINER_STATE } from '../../models/ContainerModel';
@@ -45,7 +45,14 @@ export class Containers extends Component<ContainersProps, {}> {
     const { formatMessage } = this.props.intl;
     this.uiStore.pageTitle = formatMessage({ id: 'containers.title' });
 
-    this.setFilter(this.props);
+    this.setFilterFromProps(this.props);
+
+    await this.loadContainers();
+  }
+
+
+  async componentWillReceiveProps (nextProps: ContainersProps) {
+    this.setFilterFromProps(this.props);
 
     await this.loadContainers();
   }
@@ -166,7 +173,8 @@ export class Containers extends Component<ContainersProps, {}> {
     );
   }
 
-  private setFilter (props: ContainersProps) {
+  // @action
+  private setFilterFromProps (props: ContainersProps) {
     const { query } = props.location;
 
     if (query.showAll != null) {
@@ -185,6 +193,7 @@ export class Containers extends Component<ContainersProps, {}> {
     }
   }
 
+  // @action
   private changeFilter = () => {
     this.showAllContainers = !this.showAllContainers;
   };

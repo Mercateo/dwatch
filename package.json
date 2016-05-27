@@ -55,7 +55,7 @@
     "karma-mocha": "^0.2.2",
     "karma-source-map-support": "^1.1.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "mobx-react-devtools": "^4.0.2",
+    "mobx-react-devtools": "^4.2.0",
     "mocha": "^2.4.5",
     "null-loader": "^0.1.1",
     "remap-istanbul": "^0.6.3",

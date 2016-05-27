@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react/index';
 import { FormattedMessage, FormattedRelative, FormattedNumber, InjectedIntlProps, injectIntl } from 'react-intl';
 import { UiStore } from '../../stores/UiStore';
-import { observable, computed } from 'mobx/lib/mobx';
+import { observable, computed, action } from 'mobx/lib/mobx';
 import { Link } from 'react-router';
 import { inject } from '../../utils/IOC';
 import { ImageStore } from '../../stores/ImageStore';
@@ -52,7 +52,14 @@ export class Images extends Component<ImagesProps, {}> {
     const { formatMessage } = this.props.intl;
     this.uiStore.pageTitle = formatMessage({ id: 'images.title' });
 
-    this.setFilter(this.props);
+    this.setFilterFromProps(this.props);
+
+    await this.loadImages();
+  }
+
+
+  async componentWillReceiveProps (nextProps: ImagesProps) {
+    this.setFilterFromProps(this.props);
 
     await this.loadImages();
   }
@@ -160,7 +167,8 @@ export class Images extends Component<ImagesProps, {}> {
     }
   }
 
-  private setFilter (props: ImagesProps) {
+  // @action
+  private setFilterFromProps (props: ImagesProps) {
     const { query } = props.location;
 
     if (query.showDangling != null) {
@@ -168,6 +176,7 @@ export class Images extends Component<ImagesProps, {}> {
     }
   }
 
+  @action
   private changeFilter = () => {
     this.showDanglingImages = !this.showDanglingImages;
   };
@@ -189,12 +198,13 @@ export class Images extends Component<ImagesProps, {}> {
     }
   }
 
+  // @action
   private removeDanglingImages = async () => {
     const finishTask = this.uiStore.startAsyncTask();
 
     try {
       await Promise.all(this.danglingImages.map(image => this.imageStore.removeImage(image.id)));
-    } catch(e) {
+    } catch (e) {
       const notification: Notification = {
         type: NOTIFICATION_TYPE.WARNING,
         message: this.props.intl.formatMessage({ id: 'images.actions.gc.warning' }),
