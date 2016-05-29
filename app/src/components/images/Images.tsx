@@ -167,7 +167,7 @@ export class Images extends Component<ImagesProps, {}> {
     }
   }
 
-  // @action
+  @action
   private setFilterFromProps (props: ImagesProps) {
     const { query } = props.location;
 
@@ -198,7 +198,7 @@ export class Images extends Component<ImagesProps, {}> {
     }
   }
 
-  // @action
+  @action
   private removeDanglingImages = async () => {
     const finishTask = this.uiStore.startAsyncTask();
 

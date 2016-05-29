@@ -31,7 +31,7 @@ export class AsyncButton extends Component<HTMLProps<HTMLButtonElement>, {}> {
     }
   }
 
-  // @action
+  @action
   private handleClick = async (event: MouseEvent) => {
     this.isLoading = true;
 

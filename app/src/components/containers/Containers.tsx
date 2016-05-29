@@ -173,7 +173,7 @@ export class Containers extends Component<ContainersProps, {}> {
     );
   }
 
-  // @action
+  @action
   private setFilterFromProps (props: ContainersProps) {
     const { query } = props.location;
 
@@ -193,7 +193,7 @@ export class Containers extends Component<ContainersProps, {}> {
     }
   }
 
-  // @action
+  @action
   private changeFilter = () => {
     this.showAllContainers = !this.showAllContainers;
   };

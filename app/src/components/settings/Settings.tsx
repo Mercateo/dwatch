@@ -264,7 +264,7 @@ export class Settings extends Component<{ intl: InjectedIntlProps }, {}> {
     }
   }
 
-  // @action
+  @action
   private submit = async () => {
     const { formatMessage } = this.props.intl;
 
