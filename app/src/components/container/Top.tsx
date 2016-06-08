@@ -32,7 +32,7 @@ export class Top extends AutoRefreshComponent<{container: ContainerModel}, {}> {
         </table>
       );
     }
-    
+
     return (
       <MDLWrapper>
         <table
@@ -63,14 +63,15 @@ export class Top extends AutoRefreshComponent<{container: ContainerModel}, {}> {
   }
 
   private async loadTopData () {
+    if (this.props.container == null || this.props.container.state.runState !== CONTAINER_RUN_STATE.RUNNING) {
+      this.topData = null;
+      return;
+    }
+
     const finishTask = this.uiStore.startAsyncTask();
 
     try {
-      if (this.props.container != null && this.props.container.state.runState === CONTAINER_RUN_STATE.RUNNING) {
-        this.topData = await this.props.container.top();
-      } else {
-        this.topData = null;
-      }
+      this.topData = await this.props.container.top();
       finishTask();
     } catch (e) {
       finishTask(e);

@@ -41,7 +41,9 @@ export class DetailCard extends Component<{container: ContainerModel}, {}> {
           <ul className={`${styles.inlineList}`}>
             <li><FormattedMessage id="container.detail.pwd"/></li>
             <li>
-              {container.workingDir}
+              <strong>
+                {container.workingDir}
+              </strong>
             </li>
           </ul>
         </div>

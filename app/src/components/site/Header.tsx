@@ -6,8 +6,6 @@ import { inject } from '../../utils/IOC';
 import { SettingsStore } from '../../stores/SettingsStore';
 import { UpdateNotifications } from './UpdateNoifications';
 
-const styles = require('./../shared/Common.css');
-
 @observer
 export class Header extends Component<void, {}> {
   @inject(SettingsStore)
@@ -23,10 +21,9 @@ export class Header extends Component<void, {}> {
           <span className="mdl-layout-title">{this.uiStore.pageTitle}</span>
           <div className="mdl-layout-spacer"></div>
 
-          <ul className={`${styles.inlineList}`}>
-            {this.renderSpinner()}
-            {this.renderUpdateNotifications()}
-          </ul>
+
+          {this.renderSpinner()}
+          {this.renderUpdateNotifications()}
 
           {/*<div
            className="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
@@ -50,11 +47,11 @@ export class Header extends Component<void, {}> {
     }
 
     return (
-      <li>
+      <span>
         <MDLWrapper>
           <div className="mdl-spinner mdl-js-spinner is-active"></div>
         </MDLWrapper>
-      </li>
+      </span>
     );
   }
 
@@ -64,9 +61,9 @@ export class Header extends Component<void, {}> {
     }
 
     return (
-      <li>
+      <span style={{ marginLeft: '16px' }}>
         <UpdateNotifications/>
-      </li>
+      </span>
     );
   }
 }

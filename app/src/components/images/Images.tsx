@@ -45,7 +45,7 @@ export class Images extends Component<ImagesProps, {}> {
 
   @computed
   private get danglingImages () {
-    return this.images.filter(image => image.dangling);
+    return this.imageStore.images.values().filter(image => image.dangling);
   }
 
   async componentWillMount () {
@@ -185,7 +185,7 @@ export class Images extends Component<ImagesProps, {}> {
     if (!this.showDanglingImages) {
       return null;
     }
-    
+
     return (
       <li>
         <MDLWrapper>
@@ -197,7 +197,7 @@ export class Images extends Component<ImagesProps, {}> {
       </li>
     );
   }
-  
+
   private removeDanglingImages = async () => {
     try {
       await Promise.all(this.danglingImages.map(image => this.imageStore.removeImage(image.id)));
@@ -209,6 +209,6 @@ export class Images extends Component<ImagesProps, {}> {
       };
 
       this.notificationStore.notifications.push(notification);
-    } 
+    }
   };
 }
