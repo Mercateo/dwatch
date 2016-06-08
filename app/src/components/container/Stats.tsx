@@ -75,10 +75,10 @@ export class Stats extends DockerStreamComponent<StatsStreamData, StatsProps, {}
 
         <TwoColumnCardRow left={<FormattedMessage id="stats.memory"/>}
                           right={
-          <strong>
-            <FormattedNumber value={usedMemory.size}/>{ ' ' + usedMemory.unit } / <FormattedNumber value={totalMemory.size}/>{ ' ' + totalMemory.unit }
-          </strong>
-        }/>
+                            <strong>
+                              <FormattedNumber value={usedMemory.size}/>{ ' ' + usedMemory.unit } / <FormattedNumber value={totalMemory.size}/>{ ' ' + totalMemory.unit }
+                            </strong>
+                          }/>
       </div>
     );
   }
