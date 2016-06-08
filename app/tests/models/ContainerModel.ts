@@ -16,7 +16,7 @@ describe('ContainerModel.ts', () => {
     expect(container.id).toBe(containerResponseMock.Id);
     expect(container.image).toBe(containerResponseMock.Config.Image);
     expect(container.name).toBe(normalizeContainerName(containerResponseMock.Name));
-    expect(container.environemnt).toEqual(containerResponseMock.Config.Env);
+    expect(container.environment).toEqual(containerResponseMock.Config.Env);
     expect(container.cmd).toEqual(containerResponseMock.Config.Cmd);
     expect(container.created).toEqual(containerResponseMock.Created);
     expect(container.workingDir).toBe(containerResponseMock.Config.WorkingDir);

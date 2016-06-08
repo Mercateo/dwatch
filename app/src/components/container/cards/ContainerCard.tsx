@@ -7,6 +7,7 @@ import { ContainerModel, CONTAINER_RUN_STATE } from '../../../models/ContainerMo
 import { ContainerStore } from '../../../stores/ContainerStore';
 import { observer } from 'mobx-react/index';
 import { inject } from '../../../utils/IOC';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -27,46 +28,21 @@ export class ContainerCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="containers.th.name"/></li>
-            <li>
-              <strong>{container.name}</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="containers.th.id"/>}
+                            content={<strong>{container.id.substr(0, 12) }</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="containers.th.id"/></li>
-            <li>
-              <strong>{container.id.substr(0, 12) }</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="containers.th.name"/>}
+                            content={<strong>{container.name}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="containers.th.created"/></li>
-            <li>
-              <strong>
-                <FormattedRelative value={container.created.getTime() }/>
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="containers.th.created"/>}
+                            content={<strong><FormattedRelative value={container.created.getTime()}/></strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="containers.th.status"/></li>
-            <li>
-              <strong>
-                {CONTAINER_RUN_STATE[ container.state.runState ]}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="containers.th.status"/>}
+                            content={<strong>{CONTAINER_RUN_STATE[ container.state.runState ]}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="containers.th.image"/></li>
-            <li>
-              <strong>
-                {container.image}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="containers.th.image"/>}
+                            content={<strong>{container.image}</strong>}/>
+          
         </div>
         <div className={`mdl-card__actions ${styles.flexActionBar} mdl-card--border`}>
           {this.renderStartStopButton() }

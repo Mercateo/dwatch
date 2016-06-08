@@ -9,6 +9,7 @@ import { ImageStore } from '../../../stores/ImageStore';
 import { MDLWrapper } from '../../shared/MDLWrapper';
 import { AsyncButton } from '../../shared/AsyncButton';
 import { NotificationStore, NOTIFICATION_TYPE, Notification } from '../../../stores/NotificationStore';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -39,67 +40,29 @@ export class ImageCard extends Component<ImageCardProps, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
+          <TwoColumnCardRow label={<FormattedMessage id="images.th.id"/>}
+                            content={<strong>{normalizeImageId(image.id).substr(0, 12) }</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.id"/></li>
-            <li>
-              <strong>{normalizeImageId(image.id).substr(0, 12) }</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="images.th.name"/>}
+                            content={<strong>{image.name}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.name"/></li>
-            <li>
-              <strong>{image.name}</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="images.th.tags"/>}
+                            content={<strong>{image.tags ? image.tags.join(', ') : null}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.tags"/></li>
-            <li>
-              <strong>{image.tags ? image.tags.join(', ') : null}</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="images.th.created"/>}
+                            content={<strong><FormattedRelative value={image.created.getTime() }/></strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.created"/></li>
-            <li>
-              <strong>
-                <FormattedRelative value={image.created.getTime() }/>
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="images.th.size"/>}
+                            content={<strong><FormattedNumber value={size.size}/>{ ' ' + size.unit }</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="images.th.size"/></li>
-            <li>
-              <strong>
-                <FormattedNumber value={size.size}/>{ ' ' + size.unit }
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.author"/>}
+                            content={<strong>{image.author}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.author"/></li>
-            <li>
-              <strong>{image.author}</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.os"/>}
+                            content={<strong>{image.os}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.os"/></li>
-            <li>
-              <strong>{image.os}</strong>
-            </li>
-          </ul>
-
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.arch"/></li>
-            <li>
-              <strong>{image.arch}</strong>
-            </li>
-          </ul>
-
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.arch"/>}
+                            content={<strong>{image.arch}</strong>}/>
         </div>
         <div className="mdl-layout-spacer"></div>
         <div className={`mdl-card__actions ${styles.flexActionBar} mdl-card--border`}>

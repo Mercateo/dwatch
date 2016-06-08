@@ -5,8 +5,7 @@ import { observer } from 'mobx-react/index';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { parseBytes } from '../../utils/Helper';
 import { ContainerModel, CONTAINER_RUN_STATE } from '../../models/ContainerModel';
-
-const styles = require('./../shared/Common.css');
+import { TwoColumnCardRow } from '../shared/TwoColumnCardRow';
 
 interface StatsStreamData {
   read: string;
@@ -71,21 +70,15 @@ export class Stats extends DockerStreamComponent<StatsStreamData, StatsProps, {}
 
     return (
       <div>
+        <TwoColumnCardRow label={<FormattedMessage id="stats.cpu"/>}
+                          content={<strong><FormattedNumber value={this.cpuUsage} style='percent'/></strong>}/>
 
-        <ul className={`${styles.inlineList}`}>
-          <li><FormattedMessage id="stats.cpu"/></li>
-          <li>
-            <strong><FormattedNumber value={this.cpuUsage} style='percent'/></strong>
-          </li>
-        </ul>
-
-        <ul className={`${styles.inlineList}`}>
-          <li><FormattedMessage id="stats.memory"/></li>
-          <li>
-            <strong><FormattedNumber value={usedMemory.size}/>{ ' ' + usedMemory.unit } / <FormattedNumber
-              value={totalMemory.size}/>{ ' ' + totalMemory.unit }</strong>
-          </li>
-        </ul>
+        <TwoColumnCardRow label={<FormattedMessage id="stats.memory"/>}
+                          content={
+          <strong>
+            <FormattedNumber value={usedMemory.size}/>{ ' ' + usedMemory.unit } / <FormattedNumber value={totalMemory.size}/>{ ' ' + totalMemory.unit }
+          </strong>
+        }/>
       </div>
     );
   }

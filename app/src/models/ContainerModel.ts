@@ -26,7 +26,7 @@ export class ContainerModel {
   image: string;
   name: string;
   ports: Array<[Port, HostPort]>;
-  environemnt: Array<string>;
+  environment: Array<string>;
   state: ContainerStateModel;
   cmd: Array<string>;
   created: Date;
@@ -59,7 +59,7 @@ export class ContainerModel {
                          return <[Port, HostPort]>[ internalPort, hostPort ];
                        });
 
-    this.environemnt = container.Config.Env || [];
+    this.environment = container.Config.Env || [];
     this.cmd = container.Config.Cmd || [];
     this.created = new Date(container.Created);
     this.state = new ContainerStateModel(container);

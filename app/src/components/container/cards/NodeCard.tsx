@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { ContainerModel } from '../../../models/ContainerModel';
 import { parseBytes } from '../../../utils/Helper';
-
-const styles = require('./../../shared/Common.css');
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 export class NodeCard extends Component<{container: ContainerModel}, {}> {
   render () {
@@ -24,39 +23,17 @@ export class NodeCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="container.node.name"/></li>
-            <li>
-              <strong>
-                {node.name}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="container.node.name"/>}
+                            content={<strong>{node.name}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="container.node.cpuCount"/></li>
-            <li>
-              <strong>
-                {node.cpuCount}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="container.node.cpuCount"/>}
+                            content={<strong>{node.cpuCount}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="container.node.memoryLimit"/></li>
-            <li>
-              <strong><FormattedNumber value={memoryLimit.size}/>{ ' ' + memoryLimit.unit }</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="container.node.memoryLimit"/>}
+                            content={<strong><FormattedNumber value={memoryLimit.size}/>{ ' ' + memoryLimit.unit }</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="container.node.ip"/></li>
-            <li>
-              <strong>
-                {node.ip}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="container.node.ip"/>}
+                            content={<strong>{node.ip}</strong>}/>
         </div>
       </div>
     );

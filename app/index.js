@@ -1,8 +1,6 @@
-const app = require('app');
-const BrowserWindow = require('browser-window');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const spawn = require('child_process').spawn;
-const Menu = require('menu');
 
 let mainWindow = null;
 
@@ -63,7 +61,7 @@ app.on('ready', function() {
   };
   menu.push(viewMenu);
 
-  if (process.env.NODE_ENV === 'development') {
+  // if (process.env.NODE_ENV === 'development') {
     viewMenu.submenu.push({
       label: 'Toggle Developer Tools',
       accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
@@ -80,7 +78,7 @@ app.on('ready', function() {
         if (focusedWindow) focusedWindow.reload();
       }
     });
-  }
+  // }
 
   let windowMenu = {
     label: 'Window',

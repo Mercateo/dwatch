@@ -4,8 +4,7 @@ import { inject } from '../../../utils/IOC';
 import { DockerSystemStore } from '../../../stores/DockerSystemStore';
 import { observer } from 'mobx-react/index';
 import { UiStore } from '../../../stores/UiStore';
-
-const styles = require('./../../shared/Common.css');
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 @injectIntl
 @observer
@@ -43,68 +42,26 @@ export class SystemCard extends Component<void, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.server-version"/></li>
-            <li>
-              <strong>
-                {version.Version}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.server-version"/>}
+                            content={<strong>{version.Version}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.os"/></li>
-            <li>
-              <strong>
-                {version.Os}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.os"/>}
+                            content={<strong>{version.Os}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.kernel-version"/></li>
-            <li>
-              <strong>
-                {version.KernelVersion}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.kernel-version"/>}
+                            content={<strong>{version.KernelVersion}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.go-version"/></li>
-            <li>
-              <strong>
-                {version.GoVersion}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.go-version"/>}
+                            content={<strong>{version.GoVersion}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.arch"/></li>
-            <li>
-              <strong>
-                {version.Arch}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.arch"/>}
+                            content={<strong>{version.Arch}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.api-version"/></li>
-            <li>
-              <strong>
-                {version.ApiVersion}
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.api-version"/>}
+                            content={<strong>{version.ApiVersion}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="home.system.build-time"/></li>
-            <li>
-              <strong>
-                <FormattedDate value={version.BuildTime}/>
-              </strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="home.system.build-time"/>}
+                            content={<strong><FormattedDate value={version.BuildTime}/></strong>}/>
         </div>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { observer } from 'mobx-react/index';
 import { ImageModel } from '../../../models/ImageModel';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -17,23 +18,14 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.cmd"/></li>
-            <li>
-              <strong>{this.props.image.cmd.join(' ')}</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.cmd"/>}
+                            content={<strong>{this.props.image.cmd.join(' ')}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.cwd"/></li>
-            <li>
-              <strong>{this.props.image.workingDir}</strong>
-            </li>
-          </ul>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.cwd"/>}
+                            content={<strong>{this.props.image.workingDir}</strong>}/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.environment"/></li>
-            <li>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.environment"/>}
+                            content={
               <ul className={styles.unstyledList}>
                 { this.props.image.environment.map((env, index) => (
                   <li key={index}>
@@ -41,12 +33,10 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
                   </li>
                 )) }
               </ul>
-            </li>
-          </ul>
+          }/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.entrypoint"/></li>
-            <li>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.entrypoint"/>}
+                            content={
               <ul className={styles.unstyledList}>
                 { this.props.image.entrypoints.map((entrypoint, index) => (
                   <li key={index}>
@@ -54,12 +44,10 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
                   </li>
                 )) }
               </ul>
-            </li>
-          </ul>
+          }/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.exposed-ports"/></li>
-            <li>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.exposed-ports"/>}
+                            content={
               <ul className={styles.unstyledList}>
                 { this.props.image.exposedPorts.map((port, index) => (
                   <li key={index}>
@@ -67,12 +55,10 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
                   </li>
                 )) }
               </ul>
-            </li>
-          </ul>
+          }/>
 
-          <ul className={`${styles.inlineList}`}>
-            <li><FormattedMessage id="image.detail.volumes"/></li>
-            <li>
+          <TwoColumnCardRow label={<FormattedMessage id="image.detail.volumes"/>}
+                            content={
               <ul className={styles.unstyledList}>
                 { this.props.image.volumes.map((volume, index) => (
                   <li key={index}>
@@ -80,8 +66,7 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
                   </li>
                 )) }
               </ul>
-            </li>
-          </ul>
+           }/>
         </div>
       </div>
     );
