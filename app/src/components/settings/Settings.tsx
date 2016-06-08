@@ -7,7 +7,7 @@ import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import { UiStore } from '../../stores/UiStore';
 import { NOTIFICATION_TYPE, Notification, NotificationStore } from '../../stores/NotificationStore';
 import { inject } from '../../utils/IOC';
-import { transaction, action } from 'mobx/lib/mobx';
+import { transaction } from 'mobx/lib/mobx';
 import { ConnectionParametersModel, CONFIG_TYPE, PROTOCOL } from '../../models/ConnectionParametersModel';
 
 const styles = require('./../shared/Common.css');
@@ -308,8 +308,7 @@ export class Settings extends Component<{ intl: InjectedIntlProps }, {}> {
       );
     }
   }
-
-  @action
+  
   private submit = async () => {
     const { formatMessage } = this.props.intl;
 

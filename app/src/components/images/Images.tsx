@@ -197,8 +197,7 @@ export class Images extends Component<ImagesProps, {}> {
       </li>
     );
   }
-
-  @action
+  
   private removeDanglingImages = async () => {
     try {
       await Promise.all(this.danglingImages.map(image => this.imageStore.removeImage(image.id)));

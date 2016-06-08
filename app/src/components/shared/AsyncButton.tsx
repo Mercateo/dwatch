@@ -1,5 +1,5 @@
 import React, { Component, HTMLProps, MouseEvent } from 'react';
-import { observable, action } from 'mobx/lib/mobx';
+import { observable } from 'mobx/lib/mobx';
 import { observer } from 'mobx-react/index';
 import { MDLWrapper } from './MDLWrapper';
 import { inject } from '../../utils/IOC';
@@ -36,7 +36,6 @@ export class AsyncButton extends Component<HTMLProps<HTMLButtonElement>, {}> {
     }
   }
 
-  @action
   private handleClick = async (event: MouseEvent) => {
     const finishTask = this.uiStore.startAsyncTask();
 
