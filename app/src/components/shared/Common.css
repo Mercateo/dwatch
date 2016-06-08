@@ -36,3 +36,13 @@
   word-wrap: break-word;
   white-space: normal;
 }
+
+.firstWithoutMargin > div > :first-child {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.lastWithoutMargin > div > :last-child {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

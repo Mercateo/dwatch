@@ -7,7 +7,7 @@ import { ContainerModel, CONTAINER_RUN_STATE } from '../../../models/ContainerMo
 import { ContainerStore } from '../../../stores/ContainerStore';
 import { observer } from 'mobx-react/index';
 import { inject } from '../../../utils/IOC';
-import { TwoColumnCardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 const styles = require('./../../shared/Common.css');
 

@@ -9,7 +9,7 @@ import { ImageStore } from '../../../stores/ImageStore';
 import { MDLWrapper } from '../../shared/MDLWrapper';
 import { AsyncButton } from '../../shared/AsyncButton';
 import { NotificationStore, NOTIFICATION_TYPE, Notification } from '../../../stores/NotificationStore';
-import { TwoColumnCardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 const styles = require('./../../shared/Common.css');
 

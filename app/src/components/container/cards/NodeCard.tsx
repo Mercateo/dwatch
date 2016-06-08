@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { ContainerModel } from '../../../models/ContainerModel';
 import { parseBytes } from '../../../utils/Helper';
-import { TwoColumnCardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 export class NodeCard extends Component<{container: ContainerModel}, {}> {
   render () {

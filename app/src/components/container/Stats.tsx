@@ -5,7 +5,7 @@ import { observer } from 'mobx-react/index';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { parseBytes } from '../../utils/Helper';
 import { ContainerModel, CONTAINER_RUN_STATE } from '../../models/ContainerModel';
-import { TwoColumnCardRow } from '../shared/CardRow';
+import { TwoColumnCardRow } from '../shared/TwoColumnCardRow';
 
 interface StatsStreamData {
   read: string;

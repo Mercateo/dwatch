@@ -4,7 +4,7 @@ import { inject } from '../../../utils/IOC';
 import { DockerSystemStore } from '../../../stores/DockerSystemStore';
 import { observer } from 'mobx-react/index';
 import { UiStore } from '../../../stores/UiStore';
-import { TwoColumnCardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 @injectIntl
 @observer
