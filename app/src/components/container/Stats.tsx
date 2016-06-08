@@ -5,7 +5,7 @@ import { observer } from 'mobx-react/index';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { parseBytes } from '../../utils/Helper';
 import { ContainerModel, CONTAINER_RUN_STATE } from '../../models/ContainerModel';
-import { TwoColumnCardRow } from '../shared/TwoColumnCardRow';
+import { CardRow } from '../shared/CardRow';
 
 interface StatsStreamData {
   read: string;
@@ -70,11 +70,11 @@ export class Stats extends DockerStreamComponent<StatsStreamData, StatsProps, {}
 
     return (
       <div>
-        <TwoColumnCardRow label={<FormattedMessage id="stats.cpu"/>}
-                          content={<strong><FormattedNumber value={this.cpuUsage} style='percent'/></strong>}/>
+        <CardRow label={<FormattedMessage id="stats.cpu"/>}
+                 content={<strong><FormattedNumber value={this.cpuUsage} style='percent'/></strong>}/>
 
-        <TwoColumnCardRow label={<FormattedMessage id="stats.memory"/>}
-                          content={
+        <CardRow label={<FormattedMessage id="stats.memory"/>}
+                 content={
           <strong>
             <FormattedNumber value={usedMemory.size}/>{ ' ' + usedMemory.unit } / <FormattedNumber value={totalMemory.size}/>{ ' ' + totalMemory.unit }
           </strong>

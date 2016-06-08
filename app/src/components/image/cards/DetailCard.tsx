@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { observer } from 'mobx-react/index';
 import { ImageModel } from '../../../models/ImageModel';
-import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
+import { CardRow } from '../../shared/CardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -18,14 +18,14 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <TwoColumnCardRow label={<FormattedMessage id="image.detail.cmd"/>}
-                            content={<strong>{this.props.image.cmd.join(' ')}</strong>}/>
+          <CardRow label={<FormattedMessage id="image.detail.cmd"/>}
+                   content={<strong>{this.props.image.cmd.join(' ')}</strong>}/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="image.detail.cwd"/>}
-                            content={<strong>{this.props.image.workingDir}</strong>}/>
+          <CardRow label={<FormattedMessage id="image.detail.cwd"/>}
+                   content={<strong>{this.props.image.workingDir}</strong>}/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="image.detail.environment"/>}
-                            content={
+          <CardRow label={<FormattedMessage id="image.detail.environment"/>}
+                   content={
               <ul className={styles.unstyledList}>
                 { this.props.image.environment.map((env, index) => (
                   <li key={index}>
@@ -35,8 +35,8 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
               </ul>
           }/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="image.detail.entrypoint"/>}
-                            content={
+          <CardRow label={<FormattedMessage id="image.detail.entrypoint"/>}
+                   content={
               <ul className={styles.unstyledList}>
                 { this.props.image.entrypoints.map((entrypoint, index) => (
                   <li key={index}>
@@ -46,8 +46,8 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
               </ul>
           }/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="image.detail.exposed-ports"/>}
-                            content={
+          <CardRow label={<FormattedMessage id="image.detail.exposed-ports"/>}
+                   content={
               <ul className={styles.unstyledList}>
                 { this.props.image.exposedPorts.map((port, index) => (
                   <li key={index}>
@@ -57,8 +57,8 @@ export class DetailCard extends Component<{image: ImageModel}, {}> {
               </ul>
           }/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="image.detail.volumes"/>}
-                            content={
+          <CardRow label={<FormattedMessage id="image.detail.volumes"/>}
+                   content={
               <ul className={styles.unstyledList}>
                 { this.props.image.volumes.map((volume, index) => (
                   <li key={index}>

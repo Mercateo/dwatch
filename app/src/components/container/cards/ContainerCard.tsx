@@ -7,7 +7,7 @@ import { ContainerModel, CONTAINER_RUN_STATE } from '../../../models/ContainerMo
 import { ContainerStore } from '../../../stores/ContainerStore';
 import { observer } from 'mobx-react/index';
 import { inject } from '../../../utils/IOC';
-import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
+import { CardRow } from '../../shared/CardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -28,20 +28,20 @@ export class ContainerCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <TwoColumnCardRow label={<FormattedMessage id="containers.th.id"/>}
-                            content={<strong>{container.id.substr(0, 12) }</strong>}/>
+          <CardRow label={<FormattedMessage id="containers.th.id"/>}
+                   content={<strong>{container.id.substr(0, 12) }</strong>}/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="containers.th.name"/>}
-                            content={<strong>{container.name}</strong>}/>
+          <CardRow label={<FormattedMessage id="containers.th.name"/>}
+                   content={<strong>{container.name}</strong>}/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="containers.th.created"/>}
-                            content={<strong><FormattedRelative value={container.created.getTime()}/></strong>}/>
+          <CardRow label={<FormattedMessage id="containers.th.created"/>}
+                   content={<strong><FormattedRelative value={container.created.getTime()}/></strong>}/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="containers.th.status"/>}
-                            content={<strong>{CONTAINER_RUN_STATE[ container.state.runState ]}</strong>}/>
+          <CardRow label={<FormattedMessage id="containers.th.status"/>}
+                   content={<strong>{CONTAINER_RUN_STATE[ container.state.runState ]}</strong>}/>
 
-          <TwoColumnCardRow label={<FormattedMessage id="containers.th.image"/>}
-                            content={<strong>{container.image}</strong>}/>
+          <CardRow label={<FormattedMessage id="containers.th.image"/>}
+                   content={<strong>{container.image}</strong>}/>
           
         </div>
         <div className={`mdl-card__actions ${styles.flexActionBar} mdl-card--border`}>
