@@ -4,7 +4,7 @@ import { inject } from '../../../utils/IOC';
 import { DockerSystemStore } from '../../../stores/DockerSystemStore';
 import { observer } from 'mobx-react/index';
 import { UiStore } from '../../../stores/UiStore';
-import { CardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/CardRow';
 
 @injectIntl
 @observer
@@ -42,26 +42,34 @@ export class SystemCard extends Component<void, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <CardRow label={<FormattedMessage id="home.system.server-version"/>}
-                   content={<strong>{version.Version}</strong>}/>
+          <TwoColumnCardRow besides={true}
+                            left={
+                               <div>
+                                  <TwoColumnCardRow left={<FormattedMessage id="home.system.server-version"/>}
+                                                    right={<strong>{version.Version}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="home.system.os"/>}
-                   content={<strong>{version.Os}</strong>}/>
+                                  <TwoColumnCardRow left={<FormattedMessage id="home.system.os"/>}
+                                                    right={<strong>{version.Os}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="home.system.kernel-version"/>}
-                   content={<strong>{version.KernelVersion}</strong>}/>
+                                  <TwoColumnCardRow left={<FormattedMessage id="home.system.kernel-version"/>}
+                                                    right={<strong>{version.KernelVersion}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="home.system.go-version"/>}
-                   content={<strong>{version.GoVersion}</strong>}/>
+                                  <TwoColumnCardRow left={<FormattedMessage id="home.system.go-version"/>}
+                                                    right={<strong>{version.GoVersion}</strong>}/>
+                               </div>
+                            }
+                            right={
+                               <div>
+                                 <TwoColumnCardRow left={<FormattedMessage id="home.system.arch"/>}
+                                                   right={<strong>{version.Arch}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="home.system.arch"/>}
-                   content={<strong>{version.Arch}</strong>}/>
+                                 <TwoColumnCardRow left={<FormattedMessage id="home.system.api-version"/>}
+                                                   right={<strong>{version.ApiVersion}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="home.system.api-version"/>}
-                   content={<strong>{version.ApiVersion}</strong>}/>
-
-          <CardRow label={<FormattedMessage id="home.system.build-time"/>}
-                   content={<strong><FormattedDate value={version.BuildTime}/></strong>}/>
+                                 <TwoColumnCardRow left={<FormattedMessage id="home.system.build-time"/>}
+                                                   right={<strong><FormattedDate value={version.BuildTime}/></strong>}/>
+                               </div>
+                            }/>
         </div>
       </div>
     );

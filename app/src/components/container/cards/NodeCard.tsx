@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { ContainerModel } from '../../../models/ContainerModel';
 import { parseBytes } from '../../../utils/Helper';
-import { CardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/CardRow';
 
 export class NodeCard extends Component<{container: ContainerModel}, {}> {
   render () {
@@ -23,17 +23,17 @@ export class NodeCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <CardRow label={<FormattedMessage id="container.node.name"/>}
-                   content={<strong>{node.name}</strong>}/>
+          <TwoColumnCardRow left={<FormattedMessage id="container.node.name"/>}
+                            right={<strong>{node.name}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="container.node.cpuCount"/>}
-                   content={<strong>{node.cpuCount}</strong>}/>
+          <TwoColumnCardRow left={<FormattedMessage id="container.node.cpuCount"/>}
+                            right={<strong>{node.cpuCount}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="container.node.memoryLimit"/>}
-                   content={<strong><FormattedNumber value={memoryLimit.size}/>{ ' ' + memoryLimit.unit }</strong>}/>
+          <TwoColumnCardRow left={<FormattedMessage id="container.node.memoryLimit"/>}
+                            right={<strong><FormattedNumber value={memoryLimit.size}/>{ ' ' + memoryLimit.unit }</strong>}/>
 
-          <CardRow label={<FormattedMessage id="container.node.ip"/>}
-                   content={<strong>{node.ip}</strong>}/>
+          <TwoColumnCardRow left={<FormattedMessage id="container.node.ip"/>}
+                            right={<strong>{node.ip}</strong>}/>
         </div>
       </div>
     );

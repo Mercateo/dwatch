@@ -7,7 +7,7 @@ import { ContainerModel, CONTAINER_RUN_STATE } from '../../../models/ContainerMo
 import { ContainerStore } from '../../../stores/ContainerStore';
 import { observer } from 'mobx-react/index';
 import { inject } from '../../../utils/IOC';
-import { CardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/CardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -28,21 +28,28 @@ export class ContainerCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <CardRow label={<FormattedMessage id="containers.th.id"/>}
-                   content={<strong>{container.id.substr(0, 12) }</strong>}/>
-
-          <CardRow label={<FormattedMessage id="containers.th.name"/>}
-                   content={<strong>{container.name}</strong>}/>
-
-          <CardRow label={<FormattedMessage id="containers.th.created"/>}
-                   content={<strong><FormattedRelative value={container.created.getTime()}/></strong>}/>
-
-          <CardRow label={<FormattedMessage id="containers.th.status"/>}
-                   content={<strong>{CONTAINER_RUN_STATE[ container.state.runState ]}</strong>}/>
-
-          <CardRow label={<FormattedMessage id="containers.th.image"/>}
-                   content={<strong>{container.image}</strong>}/>
+          <TwoColumnCardRow besides={true}
+                            left={
+                               <div>
+                                 <TwoColumnCardRow left={<FormattedMessage id="containers.th.id"/>}
+                                                   right={<strong>{container.id.substr(0, 12) }</strong>}/>
           
+                                 <TwoColumnCardRow left={<FormattedMessage id="containers.th.name"/>}
+                                                   right={<strong>{container.name}</strong>}/>
+          
+                                 <TwoColumnCardRow left={<FormattedMessage id="containers.th.created"/>}
+                                                   right={<strong><FormattedRelative value={container.created.getTime()}/></strong>}/>
+                               </div>
+                            }
+                            right={
+                               <div>
+                                 <TwoColumnCardRow left={<FormattedMessage id="containers.th.status"/>}
+                                                   right={<strong>{CONTAINER_RUN_STATE[ container.state.runState ]}</strong>}/>
+          
+                                 <TwoColumnCardRow left={<FormattedMessage id="containers.th.image"/>}
+                                                   right={<strong>{container.image}</strong>}/>
+                              </div>
+                            }/>
         </div>
         <div className={`mdl-card__actions ${styles.flexActionBar} mdl-card--border`}>
           {this.renderStartStopButton() }

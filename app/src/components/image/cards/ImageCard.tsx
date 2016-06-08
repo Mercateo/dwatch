@@ -9,7 +9,7 @@ import { ImageStore } from '../../../stores/ImageStore';
 import { MDLWrapper } from '../../shared/MDLWrapper';
 import { AsyncButton } from '../../shared/AsyncButton';
 import { NotificationStore, NOTIFICATION_TYPE, Notification } from '../../../stores/NotificationStore';
-import { CardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/CardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -40,29 +40,37 @@ export class ImageCard extends Component<ImageCardProps, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <CardRow label={<FormattedMessage id="images.th.id"/>}
-                   content={<strong>{normalizeImageId(image.id).substr(0, 12) }</strong>}/>
+          <TwoColumnCardRow besides={true}
+                            left={
+                              <div>
+                                <TwoColumnCardRow left={<FormattedMessage id="images.th.id"/>}
+                                                  right={<strong>{normalizeImageId(image.id).substr(0, 12) }</strong>}/>
 
-          <CardRow label={<FormattedMessage id="images.th.name"/>}
-                   content={<strong>{image.name}</strong>}/>
+                                <TwoColumnCardRow left={<FormattedMessage id="images.th.name"/>}
+                                                  right={<strong>{image.name}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="images.th.tags"/>}
-                   content={<strong>{image.tags ? image.tags.join(', ') : null}</strong>}/>
+                                <TwoColumnCardRow left={<FormattedMessage id="images.th.tags"/>}
+                                                  right={<strong>{image.tags ? image.tags.join(', ') : null}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="images.th.created"/>}
-                   content={<strong><FormattedRelative value={image.created.getTime() }/></strong>}/>
+                                <TwoColumnCardRow left={<FormattedMessage id="images.th.created"/>}
+                                                  right={<strong><FormattedRelative value={image.created.getTime() }/></strong>}/>
+                              </div>
+                            }
+                            right={
+                              <div>
+                                <TwoColumnCardRow left={<FormattedMessage id="images.th.size"/>}
+                                                  right={<strong><FormattedNumber value={size.size}/>{ ' ' + size.unit }</strong>}/>
 
-          <CardRow label={<FormattedMessage id="images.th.size"/>}
-                   content={<strong><FormattedNumber value={size.size}/>{ ' ' + size.unit }</strong>}/>
+                                <TwoColumnCardRow left={<FormattedMessage id="image.detail.author"/>}
+                                                  right={<strong>{image.author}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="image.detail.author"/>}
-                   content={<strong>{image.author}</strong>}/>
+                                <TwoColumnCardRow left={<FormattedMessage id="image.detail.os"/>}
+                                                  right={<strong>{image.os}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="image.detail.os"/>}
-                   content={<strong>{image.os}</strong>}/>
-
-          <CardRow label={<FormattedMessage id="image.detail.arch"/>}
-                   content={<strong>{image.arch}</strong>}/>
+                                <TwoColumnCardRow left={<FormattedMessage id="image.detail.arch"/>}
+                                                  right={<strong>{image.arch}</strong>}/>
+                              </div>
+                            }/>
         </div>
         <div className="mdl-layout-spacer"></div>
         <div className={`mdl-card__actions ${styles.flexActionBar} mdl-card--border`}>

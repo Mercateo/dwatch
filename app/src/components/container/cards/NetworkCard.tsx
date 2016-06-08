@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ContainerModel } from '../../../models/ContainerModel';
-import { CardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/CardRow';
 
 export class NetworkCard extends Component<{container: ContainerModel}, {}> {
   render () {
@@ -15,8 +15,8 @@ export class NetworkCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <CardRow label={<FormattedMessage id="containers.th.ports"/>}
-                   content={
+          <TwoColumnCardRow left={<FormattedMessage id="containers.th.ports"/>}
+                            right={
               <strong>
                 {container.ports.map(port => {
                   let mapping = `${port[ 0 ].port}/${port[ 0 ].protocol}`;

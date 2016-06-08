@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ContainerModel } from '../../../models/ContainerModel';
-import { CardRow } from '../../shared/CardRow';
+import { TwoColumnCardRow } from '../../shared/CardRow';
 
 const styles = require('./../../shared/Common.css');
 
@@ -17,11 +17,11 @@ export class DetailCard extends Component<{container: ContainerModel}, {}> {
           </h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <CardRow label={<FormattedMessage id="container.detail.commands"/>}
-                   content={<strong>{container.cmd.join(' ')}</strong>}/>
+          <TwoColumnCardRow left={<FormattedMessage id="container.detail.commands"/>}
+                            right={<strong>{container.cmd.join(' ')}</strong>}/>
 
-          <CardRow label={<FormattedMessage id="container.detail.environment"/>}
-                   content={
+          <TwoColumnCardRow left={<FormattedMessage id="container.detail.environment"/>}
+                            right={
                 <ul className={styles.unstyledList}>
                   { container.environment.map((environment, index) => (
                     <li key={index}>
@@ -32,8 +32,8 @@ export class DetailCard extends Component<{container: ContainerModel}, {}> {
               }/>
 
 
-          <CardRow label={<FormattedMessage id="container.detail.pwd"/>}
-                   content={<strong>{container.workingDir}</strong>}/>
+          <TwoColumnCardRow left={<FormattedMessage id="container.detail.pwd"/>}
+                            right={<strong>{container.workingDir}</strong>}/>
         </div>
       </div>
     );
