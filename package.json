@@ -62,7 +62,7 @@
     "remap-istanbul": "^0.6.3",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.2",
-    "typescript": "^1.8.10",
+    "typescript": "^1.9.0-dev.20160608-1.0",
     "typings": "^1.0.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0",

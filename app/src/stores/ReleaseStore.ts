@@ -47,8 +47,9 @@ export class ReleaseStore {
     } catch(e) {
     }
 
+    // sort by id ASC
     releases
-      .sort(x => x.id)
+      .sort((a, b) => a.id - b.id)
       .reverse();
 
     let latestRelease = releases[0];
