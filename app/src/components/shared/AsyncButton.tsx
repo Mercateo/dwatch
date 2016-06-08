@@ -2,9 +2,14 @@ import React, { Component, HTMLProps, MouseEvent } from 'react';
 import { observable, action } from 'mobx/lib/mobx';
 import { observer } from 'mobx-react/index';
 import { MDLWrapper } from './MDLWrapper';
+import { inject } from '../../utils/IOC';
+import { UiStore } from '../../stores/UiStore';
 
 @observer
 export class AsyncButton extends Component<HTMLProps<HTMLButtonElement>, {}> {
+  @inject(UiStore)
+  private uiStore: UiStore;
+
   @observable
   private isLoading: boolean = false;
 
@@ -33,12 +38,15 @@ export class AsyncButton extends Component<HTMLProps<HTMLButtonElement>, {}> {
 
   @action
   private handleClick = async (event: MouseEvent) => {
+    const finishTask = this.uiStore.startAsyncTask();
+
     this.isLoading = true;
 
     try {
       await this.props.onClick(event);
+      finishTask();
     } catch (e) {
-      console.error(e);
+      finishTask(e);
     } finally {
       this.isLoading = false;
     }

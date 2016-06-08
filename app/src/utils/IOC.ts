@@ -4,8 +4,11 @@ import Dockerode from 'dockerode';
 
 export const kernel = new Kernel();
 
+export const Fetch = <Symbol>Symbol();
+
 // bind 3rd party deps
 kernel.bind(Dockerode).toConstantValue(Dockerode);
+kernel.bind(Fetch).toConstantValue(fetch.bind(window));
 
 const provide = makeFluentProvideDecorator(kernel);
 

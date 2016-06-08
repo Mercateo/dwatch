@@ -31,9 +31,9 @@ export class AppDrawer extends Component<void, {}> {
             <FormattedMessage id="images.title"/>
           </a>
           {/*<a className={`${styles.navigationLink} mdl-navigation__link`} href="#/images">Images</a>
-          <a className={`${styles.navigationLink} mdl-navigation__link`} href="#/networks">
-            <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
-               role="presentation">dvr</i>Networks</a>*/}
+           <a className={`${styles.navigationLink} mdl-navigation__link`} href="#/networks">
+           <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
+           role="presentation">dvr</i>Networks</a>*/}
           <a className={`${styles.navigationLink} mdl-navigation__link`} href="#/settings">
             <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
                role="presentation">settings</i>
@@ -42,8 +42,8 @@ export class AppDrawer extends Component<void, {}> {
           <div className="mdl-layout-spacer"></div>
           <LocaleSwitcher/>
           {/*<a className={`${styles.navigationLink} mdl-navigation__link`} href="">
-            <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
-               role="presentation">help_outline</i></a>*/}
+           <i className={`${styles.navigationIcon} mdl-color-text--blue-grey-400 material-icons`}
+           role="presentation">help_outline</i></a>*/}
           <span className="mdl-typography--text-center mdl-typography--font-light" style={{ cursor: 'pointer' }}>
             DWatch @ <a onClick={this.openGithubRepo}>Github</a> | v{__VERSION__}
           </span>

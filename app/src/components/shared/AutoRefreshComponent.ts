@@ -14,6 +14,10 @@ export abstract class AutoRefreshComponent<P, S> extends Component<P, S> {
   }
 
   componentWillUnmount() {
+    this.clearInterval();
+  }
+
+  clearInterval() {
     clearInterval(this.intervalHolder);
   }
 

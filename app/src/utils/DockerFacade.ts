@@ -507,9 +507,8 @@ export class DockerFacade {
   //     });
   //   });
   // }
-
-  // TODO: change it back and fix ts
-  private async fetchImages(options: Object = {}): Promise<any> { // Promise<Array<Image>>
+  
+  private async fetchImages(options: Object = {}): Promise<Array<Image>> {
     return Promise.all(
       (await new Promise<Array<SummarizedImage>>((resolve, reject) => {
       this.dockerode.listImages(options, (err: any, images: Array<SummarizedImage>) => {
@@ -523,8 +522,7 @@ export class DockerFacade {
         .map((image: SummarizedImage) => this.getImage(image.Id)));
   }
 
-  // TODO: change it back and fix ts
-  private async fetchContainers (options: Object = {}): Promise<any>  { //Promise<Array<Container>>
+  private async fetchContainers (options: Object = {}): Promise<Array<Container>>  {
     return Promise.all(
       (await new Promise<Array<SummarizedContainer>>((resolve, reject) => {
         this.dockerode.listContainers(options, (err: any, containers: Array<SummarizedContainer>) => {

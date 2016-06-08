@@ -4,7 +4,8 @@
     "node": "registry:dt/node#4.0.0+20160319033040",
     "react": "registry:dt/react#0.14.0+20160423065914",
     "react-dom": "registry:dt/react-dom#0.14.0+20160316155526",
-    "react-intl": "registry:dt/react-intl#2.0.0-beta1+20160317120654"
+    "react-intl": "registry:dt/react-intl#2.0.0-beta1+20160317120654",
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20160524142046"
   },
   "globalDevDependencies": {
     "expect": "registry:dt/expect#1.13.4+20160316155526",

@@ -115,6 +115,7 @@ export const en_US: I18NLanguage = {
   'settings.key-file': 'Path to VM private key',
   'settings.action.submit': 'Save',
   'settings.valid-connection': 'Connection successfully tested.',
+  'settings.update-notifications': 'Show update notifications',
 
   ////components
   //stats

@@ -25,7 +25,7 @@ export class ContainersCard extends Component<void, {}> {
 
   @computed
   private get runningContainers() {
-    return this.containerStore.containers.values().filter(container => container.state.runState === CONTAINER_RUN_STATE.RUNNING);
+    return this.containers.filter(container => container.state.runState === CONTAINER_RUN_STATE.RUNNING);
   }
 
   async componentWillMount() {

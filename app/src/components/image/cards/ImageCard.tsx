@@ -4,7 +4,6 @@ import { FormattedMessage, FormattedRelative, FormattedNumber, injectIntl, Injec
 import { observer } from 'mobx-react/index';
 import { ImageModel } from '../../../models/ImageModel';
 import { normalizeImageId, parseBytes } from '../../../utils/Helper';
-import { UiStore } from '../../../stores/UiStore';
 import { inject } from '../../../utils/IOC';
 import { ImageStore } from '../../../stores/ImageStore';
 import { MDLWrapper } from '../../shared/MDLWrapper';
@@ -21,9 +20,6 @@ interface ImageCardProps {
 @injectIntl
 @observer
 export class ImageCard extends Component<ImageCardProps, {}> {
-  @inject(UiStore)
-  private uiStore: UiStore;
-
   @inject(ImageStore)
   private imageStore: ImageStore;
 
@@ -126,14 +122,11 @@ export class ImageCard extends Component<ImageCardProps, {}> {
   }
 
   private handleRemoveClick = async () => {
-    const finishTask = this.uiStore.startAsyncTask();
-
     try {
       await this.imageStore.removeImage(this.props.image.id);
       hashHistory.replace('/images');
-      finishTask();
     } catch (e) {
-      if(e.message.includes('HTTP') && e.message.includes('409')) {
+      if (e.message.includes('HTTP') && e.message.includes('409')) {
         const notification: Notification = {
           type: NOTIFICATION_TYPE.WARNING,
           message: this.props.intl.formatMessage({ id: 'image.action.remove.warning' }),
@@ -141,10 +134,8 @@ export class ImageCard extends Component<ImageCardProps, {}> {
         };
 
         this.notificationStore.notifications.push(notification);
-
-        finishTask();
       } else {
-        finishTask(e);
+        throw e;
       }
     }
   };

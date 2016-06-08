@@ -15,6 +15,9 @@ export class SettingsStore {
   @observable
   locale: LOCALE = LOCALE.EN_US;
 
+  @observable
+  showUpdateNotifications: boolean = true;
+
   constructor () {
     try {
       const config: SettingsStore = JSON.parse(localStorage.getItem('config'));
@@ -22,6 +25,7 @@ export class SettingsStore {
       if (config != null) {
         transaction(() => {
           this.locale = config.locale;
+          this.showUpdateNotifications = config.showUpdateNotifications;
 
           Object.assign(this.connectionSettings, config.connectionSettings);
         });
@@ -34,7 +38,8 @@ export class SettingsStore {
     autorun(() => {
       localStorage.setItem('config', JSON.stringify({
         locale: this.locale,
-        connectionSettings: this.connectionSettings
+        connectionSettings: this.connectionSettings,
+        showUpdateNotifications: this.showUpdateNotifications
       }));
     });
   }

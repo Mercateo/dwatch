@@ -3,6 +3,7 @@ import { observer } from 'mobx-react/index';
 import { inject } from '../../utils/IOC';
 import { LOCALE, SettingsStore } from '../../stores/SettingsStore';
 import { parseLocale } from '../../utils/Helper';
+import { action } from 'mobx/lib/mobx';
 
 const styles = require('./../shared/Common.css');
 
@@ -31,6 +32,7 @@ export class LocaleSwitcher extends Component<void, any> {
     );
   }
 
+  @action
   private setLocale = (locale: LOCALE) => () => {
     this.settingsStore.locale = locale;
   }

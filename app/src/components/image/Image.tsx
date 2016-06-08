@@ -43,6 +43,7 @@ export class Image extends Component<ImageProps, {}> {
     const { formatMessage } = this.props.intl;
 
     this.imageId = imageId;
+
     await this.loadImage(imageId);
 
     this.pageTitleDisposer = autorun(() => {
@@ -66,21 +67,21 @@ export class Image extends Component<ImageProps, {}> {
   }
 
   render () {
-    if (this.image != null) {
-      return (
-        <div>
-          <div className="mdl-grid">
-            <ImageCard image={this.image}/>
-
-            <DetailCard image={this.image}/>
-
-            <HistoryCard image={this.image}/>
-          </div>
-        </div>
-      );
-    } else {
+    if (this.image == null) {
       return null;
     }
+
+    return (
+      <div>
+        <div className="mdl-grid">
+          <ImageCard image={this.image}/>
+
+          <DetailCard image={this.image}/>
+
+          <HistoryCard image={this.image}/>
+        </div>
+      </div>
+    );
   }
 
   private async loadImage (imageId: string) {

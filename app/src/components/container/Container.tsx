@@ -45,6 +45,7 @@ export class Container extends Component<ContainerProps, {}> {
     const { formatMessage } = this.props.intl;
 
     this.containerId = containerId;
+
     await this.loadContainer(containerId);
 
     this.pageTitleDisposer = autorun(() => {
@@ -62,33 +63,33 @@ export class Container extends Component<ContainerProps, {}> {
   }
 
   componentWillUnmount (): any {
-    if(this.pageTitleDisposer != null) {
+    if (this.pageTitleDisposer != null) {
       this.pageTitleDisposer();
     }
   }
 
   render () {
-    if (this.container != null) {
-      return (
-        <div>
-          <div className="mdl-grid">
-            <ContainerCard container={this.container}/>
-
-            <StatsCard container={this.container}/>
-
-            <DetailCard container={this.container}/>
-
-            <NodeCard container={this.container}/>
-
-            <NetworkCard container={this.container}/>
-
-            <LiveFeedCard container={this.container}/>
-          </div>
-        </div>
-      );
-    } else {
+    if (this.container == null) {
       return null;
     }
+
+    return (
+      <div>
+        <div className="mdl-grid">
+          <ContainerCard container={this.container}/>
+
+          <StatsCard container={this.container}/>
+
+          <DetailCard container={this.container}/>
+
+          <NodeCard container={this.container}/>
+
+          <NetworkCard container={this.container}/>
+
+          <LiveFeedCard container={this.container}/>
+        </div>
+      </div>
+    );
   }
 
   private async loadContainer (containerId: string) {

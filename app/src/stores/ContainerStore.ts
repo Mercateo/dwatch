@@ -1,5 +1,5 @@
 import { DockerEvent, DockerSwarmEvent, DockerFacade } from '../utils/DockerFacade';
-import { transaction, map, asMap, observable, ObservableMap } from 'mobx/lib/mobx';
+import { transaction, asMap, observable } from 'mobx/lib/mobx';
 import { ContainerModel } from '../models/ContainerModel';
 import { inject, provideSingleton } from '../utils/IOC';
 

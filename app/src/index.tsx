@@ -59,4 +59,5 @@ ReactDOM.render(
     <Notifications/>
     { __DEVELOP__ ? <DevTools/> : null }
   </div>,
-  document.getElementById('root'));
+  document.getElementById('root')
+);

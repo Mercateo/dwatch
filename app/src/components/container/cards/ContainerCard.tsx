@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
-import { UiStore } from '../../../stores/UiStore';
 import { MDLWrapper } from '../../shared/MDLWrapper';
 import { AsyncButton } from '../../shared/AsyncButton';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
@@ -13,9 +12,6 @@ const styles = require('./../../shared/Common.css');
 
 @observer
 export class ContainerCard extends Component<{container: ContainerModel}, {}> {
-  @inject(UiStore)
-  private uiStore: UiStore;
-
   @inject(ContainerStore)
   private containerStore: ContainerStore;
 
@@ -143,58 +139,23 @@ export class ContainerCard extends Component<{container: ContainerModel}, {}> {
   }
 
   private handleStopClick = async () => {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.props.container.stop();
-      finishTask();
-    } catch (e) {
-      finishTask(e);
-    }
+    await this.props.container.stop();
   };
 
   private handleStartClick = async () => {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.props.container.start();
-      finishTask();
-    } catch (e) {
-      finishTask(e);
-    }
+    await this.props.container.start();
   };
 
   private handlePauseClick = async () => {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.props.container.pauseContainer();
-      finishTask();
-    } catch (e) {
-      finishTask(e);
-    }
+    await this.props.container.pauseContainer();
   };
 
   private handleUnPauseClick = async () => {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.props.container.unPauseContainer();
-      finishTask();
-    } catch (e) {
-      finishTask(e);
-    }
+    await this.props.container.unPauseContainer();
   };
 
   private handleRemoveClick = async () => {
-    const finishTask = this.uiStore.startAsyncTask();
-
-    try {
-      await this.containerStore.removeContainer(this.props.container.id);
-      hashHistory.replace('/containers');
-      finishTask();
-    } catch (e) {
-      finishTask(e);
-    }
+    await this.containerStore.removeContainer(this.props.container.id);
+    hashHistory.replace('/containers');
   };
 }
