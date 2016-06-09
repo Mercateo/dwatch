@@ -4,7 +4,7 @@ platform:
   - x64
 
 cache:
-  - node_modules -> package.json,appveyor.ynl
+  - node_modules -> package.json,appveyor.yml,app/package.json
 
 init:
   - git config --global core.autocrlf input
