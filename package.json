@@ -14,7 +14,7 @@
     "start": "cross-env NODE_ENV=development electron ./app",
     "build": "cross-env NODE_ENV=development webpack --config webpack-dev.config.js",
     "build-release": "cross-env NODE_ENV=production webpack --config webpack-prod.config.js",
-    "dist:all": "npm run test && npm run build-release && build --x64 ---arch=x64",
+    "dist:all": "npm run test && npm run build-release && build -l -o -w --x64",
     "dist": "build",
     "test": "cross-env NODE_ENV=production webpack --config webpack-test.config.js && karma start && remap-istanbul -i app/generated/coverage.json > app/generated/coverage-final.json && node scripts/generate-coverage.js text",
     "coverage-html": "npm run test && node scripts/generate-coverage.js html",
