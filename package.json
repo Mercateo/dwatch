@@ -43,7 +43,7 @@
     "css-loader": "^0.23.1",
     "electron-builder": "^4.2.6",
     "electron-prebuilt": "^1.2.2",
-    "emock": "^0.0.13",
+    "emock": "^0.1.0",
     "expect": "^1.20.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
