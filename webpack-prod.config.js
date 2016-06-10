@@ -10,4 +10,10 @@ conf.module.loaders.push({
   exclude: /(node_modules|bower_components)/
 });
 
+conf.plugins.push(new webpack.optimize.UglifyJsPlugin({
+  compress: {
+    warnings: false
+  }
+}));
+
 module.exports = conf;
