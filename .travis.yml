@@ -44,7 +44,7 @@ addons:
       - xz-utils
 
 install:
-  - nvm install 5
+  - nvm install 6
   - npm i
 
 script:
