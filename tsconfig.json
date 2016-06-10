@@ -10,8 +10,6 @@
     // "noImplicitAny": true
   },
   "exclude": [
-    "typings/globals",
-    "typings/modules",
     "node_modules",
     "app/node_modules",
     "dist",
