@@ -6,7 +6,7 @@ import { ReleaseStore } from '../../stores/ReleaseStore';
 import { MDLWrapper } from '../shared/MDLWrapper';
 
 @observer
-export class UpdateNotifications extends Component<void, any> {
+export class UpdateNotifications extends Component<void, {}> {
   @inject(ReleaseStore)
   private releaseStore: ReleaseStore;
 
@@ -30,7 +30,6 @@ export class UpdateNotifications extends Component<void, any> {
              </div>
           </MDLWrapper>
         </span>
-
     );
   }
 
