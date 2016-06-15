@@ -8,7 +8,7 @@ export class NodeCard extends Component<{container: ContainerModel}, {}> {
   render () {
     const { node } = this.props.container;
 
-    if (node !== null) {
+    if (node == null) {
       return null;
     }
 
