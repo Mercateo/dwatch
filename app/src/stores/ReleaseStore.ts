@@ -52,9 +52,9 @@ export class ReleaseStore {
       .sort((a, b) => a.id - b.id)
       .reverse();
 
-    let latestRelease = releases[0];
-    if (latestRelease && latestRelease.name !== this.currentVersion) {
-      this.newVersion = latestRelease.name;
+    let latestRelease = releases[0] && releases[0].name ? releases[0].name.substr(1) : null;
+    if (latestRelease && latestRelease !== this.currentVersion) {
+      this.newVersion = latestRelease;
 
       if (this.intervalHolder != null) {
         clearInterval(this.intervalHolder);

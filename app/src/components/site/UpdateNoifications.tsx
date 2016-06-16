@@ -24,7 +24,7 @@ export class UpdateNotifications extends Component<void, {}> {
             <div className="mdl-tooltip" htmlFor="update-overlay">
                An update is available for DWatch!
                <br/>
-               Your version: v{this.releaseStore.currentVersion} New Version: {this.releaseStore.newVersion}
+               Your version: v{this.releaseStore.currentVersion} New Version: v{this.releaseStore.newVersion}
               <br/>
                Please have a look at the DWatch release page.
              </div>

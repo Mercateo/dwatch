@@ -22,7 +22,7 @@ describe('ReleaseStore.ts', () => {
       json: createSpy().andReturn(new Promise((resolve) => resolve([
         {
           id: 5,
-          name: __VERSION__
+          name: `v${__VERSION__}`
         },
         {
           id: 6,
@@ -52,7 +52,27 @@ describe('ReleaseStore.ts', () => {
     await store.checkForUpdate();
 
     expect(fetchMock).toHaveBeenCalled();
-    expect(store.newVersion).toBe(newVersion);
+    expect(store.newVersion).toEqual(newVersion.substr(1));
+  });
+
+  it('should not update store if no new version is present', async () => {
+    settingsStoreMock.mock.showUpdateNotifications = true;
+    fetchMock.andReturn(new Promise((resolve) => resolve({
+      json: createSpy().andReturn(new Promise((resolve) => resolve([
+        {
+          id: 5,
+          name: `v${__VERSION__}`
+        }
+      ])))
+    })));
+
+    expect(fetchMock).toNotHaveBeenCalled();
+    expect(store.newVersion).toEqual(null);
+
+    await store.checkForUpdate();
+
+    expect(fetchMock).toHaveBeenCalled();
+    expect(store.newVersion).toEqual(null);
   });
 
   it('should fail silently', async () => {
