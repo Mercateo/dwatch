@@ -1,4 +1,4 @@
-import { Kernel, makePropertyInjectDecorator, INewable } from 'inversify';
+import { Kernel, makePropertyInjectDecorator, interfaces } from 'inversify';
 import { makeFluentProvideDecorator } from 'inversify-binding-decorators';
 import Dockerode from 'dockerode';
 
@@ -12,11 +12,11 @@ kernel.bind(Fetch).toConstantValue(fetch.bind(window));
 
 const provide = makeFluentProvideDecorator(kernel);
 
-export function provideInstance (identifier: string|Symbol|INewable<any>) {
+export function provideInstance (identifier: string|Symbol|interfaces.Newable<any>) {
   return provide(identifier).done();
 }
 
-export function provideSingleton (identifier: string|Symbol|INewable<any>) {
+export function provideSingleton (identifier: string|Symbol|interfaces.Newable<any>) {
   return provide(identifier).inSingletonScope().done();
 }
 
