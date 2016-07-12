@@ -182,7 +182,7 @@ export class Images extends Component<ImagesProps, {}> {
   };
 
   private renderGCButton () {
-    if (!this.showDanglingImages) {
+    if (!this.showDanglingImages || this.danglingImages.length === 0) {
       return null;
     }
 

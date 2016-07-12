@@ -40,6 +40,8 @@ export const de_DE : I18NLanguage = {
   'containers.state.CREATED': 'Created',
   'containers.state.EXITED': 'Exited',
   'containers.state.RUNNING': 'Up',
+  'containers.actions.gc': 'Gestoppte Container entfernen',
+  'containers.actions.gc.warning': 'Es konnten nicht alle gestoppten Container entfernen.',
 
   // container details
   'container.title': 'Container {name}',

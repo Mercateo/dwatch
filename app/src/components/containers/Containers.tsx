@@ -7,6 +7,9 @@ import { Link } from 'react-router';
 import { ContainerStore } from '../../stores/ContainerStore';
 import { CONTAINER_RUN_STATE, CONTAINER_STATE } from '../../models/ContainerModel';
 import { inject } from '../../utils/IOC';
+import { NotificationStore, Notification, NOTIFICATION_TYPE } from '../../stores/NotificationStore';
+import { AsyncButton } from '../shared/AsyncButton';
+import { MDLWrapper } from '../shared/MDLWrapper';
 
 const styles = require('./../shared/Common.css');
 
@@ -27,6 +30,9 @@ export class Containers extends Component<ContainersProps, {}> {
 
   @inject(ContainerStore)
   private containerStore: ContainerStore;
+
+  @inject(NotificationStore)
+  private notificationStore: NotificationStore;
 
   @observable
   private showAllContainers: boolean = false;
@@ -78,6 +84,7 @@ export class Containers extends Component<ContainersProps, {}> {
                     <FormattedMessage id='containers.filter.showAll'/>
                   </label>
                 </li>
+                {this.renderGCButton()}
               </ul>
             </div>
           </div>
@@ -196,5 +203,38 @@ export class Containers extends Component<ContainersProps, {}> {
   @action
   private changeFilter = () => {
     this.showAllContainers = !this.showAllContainers;
+  };
+
+  private renderGCButton () {
+    if (!this.showAllContainers || this.containers.filter(container => container.state.runState === CONTAINER_RUN_STATE.STOPPED).length === 0) {
+      return null;
+    }
+
+    return (
+      <li>
+        <MDLWrapper>
+          <AsyncButton onClick={this.removeStoppedContainers}
+                       className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            <FormattedMessage id='containers.actions.gc'/>
+          </AsyncButton>
+        </MDLWrapper>
+      </li>
+    );
+  }
+
+  private removeStoppedContainers = async () => {
+    try {
+      await Promise.all(this.containers
+                            .filter(container => container.state.runState === CONTAINER_RUN_STATE.STOPPED)
+                            .map(container => this.containerStore.removeContainer(container.id)));
+    } catch (e) {
+      const notification: Notification = {
+        type: NOTIFICATION_TYPE.WARNING,
+        message: this.props.intl.formatMessage({ id: 'containers.actions.gc.warning' }),
+        timeout: 5000
+      };
+
+      this.notificationStore.notifications.push(notification);
+    }
   };
 }
