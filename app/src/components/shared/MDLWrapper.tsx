@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 
 declare var window: any;
 
-export class MDLWrapper extends Component<void, void> {
+export class MDLWrapper extends Component<{}, {}> {
   componentDidMount() {
     window.componentHandler.upgradeElement(findDOMNode(this));
   }

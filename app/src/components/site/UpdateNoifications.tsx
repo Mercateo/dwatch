@@ -6,7 +6,7 @@ import { ReleaseStore } from '../../stores/ReleaseStore';
 import { MDLWrapper } from '../shared/MDLWrapper';
 
 @observer
-export class UpdateNotifications extends Component<void, {}> {
+export class UpdateNotifications extends Component<{}, {}> {
   @inject(ReleaseStore)
   private releaseStore: ReleaseStore;
 

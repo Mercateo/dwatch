@@ -5,7 +5,7 @@ import { MDLWrapper } from './shared/MDLWrapper';
 
 const styles = require('./App.css');
 
-export class App extends Component<void, void> {
+export class App extends Component<{}, {}> {
   render () {
     return (
       <MDLWrapper>

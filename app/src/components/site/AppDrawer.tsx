@@ -7,7 +7,7 @@ declare var __VERSION__: any;
 
 const styles = require('./../App.css');
 
-export class AppDrawer extends Component<void, {}> {
+export class AppDrawer extends Component<{}, {}> {
   render () {
     return (
       <div className="mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">

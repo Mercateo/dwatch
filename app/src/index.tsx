@@ -27,7 +27,7 @@ addLocaleData(require('react-intl/locale-data/de'));
 declare var __DEVELOP__: boolean;
 
 @observer
-class AppContainer extends Component<void, {}> {
+class AppContainer extends Component<{}, {}> {
   @inject(SettingsStore)
   private settingsStore: SettingsStore;
 

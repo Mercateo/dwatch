@@ -7,7 +7,7 @@ import { SettingsStore } from '../../stores/SettingsStore';
 import { UpdateNotifications } from './UpdateNoifications';
 
 @observer
-export class Header extends Component<void, {}> {
+export class Header extends Component<{}, {}> {
   @inject(SettingsStore)
   private settingsStore: SettingsStore;
 

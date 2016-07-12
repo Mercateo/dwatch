@@ -7,7 +7,7 @@ import { observer } from 'mobx-react/index';
 import { inject } from '../../utils/IOC';
 
 @observer
-export class Notifications extends Component<void, any> {
+export class Notifications extends Component<{}, {}> {
   @inject(NotificationStore)
   private notificationStore: NotificationStore;
 

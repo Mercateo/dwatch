@@ -8,7 +8,7 @@ import { TwoColumnCardRow } from '../../shared/TwoColumnCardRow';
 
 @injectIntl
 @observer
-export class SystemCard extends Component<void, {}> {
+export class SystemCard extends Component<{}, {}> {
   @inject(UiStore)
   private uiStore: UiStore;
 

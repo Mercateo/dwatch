@@ -8,7 +8,7 @@ import { action } from 'mobx/lib/mobx';
 const styles = require('./../shared/Common.css');
 
 @observer
-export class LocaleSwitcher extends Component<void, any> {
+export class LocaleSwitcher extends Component<{}, {}> {
   @inject(SettingsStore)
   private settingsStore: SettingsStore;
 

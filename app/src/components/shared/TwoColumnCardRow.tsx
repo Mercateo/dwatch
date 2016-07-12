@@ -8,7 +8,7 @@ interface TwoColumnCardRowProps {
   besides?: boolean;
 }
 
-export class TwoColumnCardRow extends Component<TwoColumnCardRowProps, void> {
+export class TwoColumnCardRow extends Component<TwoColumnCardRowProps, {}> {
   render () {
     const width = this.props.besides ? 6 : 12;
     const customStyles = {

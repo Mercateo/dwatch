@@ -10,7 +10,7 @@ const styles = require('./../../shared/Common.css');
 
 @injectIntl
 @observer
-export class ImagesCard extends Component<void, {}> {
+export class ImagesCard extends Component<{}, {}> {
   @inject(UiStore)
   private uiStore: UiStore;
 
