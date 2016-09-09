@@ -57,12 +57,14 @@ export function parseRepoTags(repoTags: Array<string>): { name: string, tags: Ar
   if(repoTags == null || repoTags.length === 0) {
     return null;
   }
-  
+
+  repoTags = repoTags.map(tag => tag.includes('/') ? tag.split('/').pop() : tag);
+
   return {
     name: repoTags[0].split(':')[0],
     tags: repoTags.map(repoTag => repoTag.split(':')[1])
-  }; 
-  
+  };
+
 }
 
 export function parseLocale (locale: LOCALE): {fullLocale: string, country: string, language: string} {

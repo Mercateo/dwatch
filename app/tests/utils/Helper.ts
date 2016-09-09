@@ -44,6 +44,15 @@ describe('Helper.ts', () => {
       expect(parsed.tags.length).toBe(2);
       expect(parsed.tags).toEqual([ '0.15', 'latest' ]);
     });
+
+    it('should probably parse name and tags from full url with port', () => {
+      let repoTags = [ 'localhost:5000/test/busybox:latest' ];
+      let parsed = parseRepoTags(repoTags);
+
+      expect(parsed.name).toBe('busybox');
+      expect(parsed.tags.length).toBe(1);
+      expect(parsed.tags).toEqual([ 'latest' ]);
+    });
   });
 
   describe('parseBytes', () => {
