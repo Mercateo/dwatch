@@ -1,6 +1,7 @@
-import { Kernel, makePropertyInjectDecorator, interfaces } from 'inversify';
+import { Kernel, interfaces } from 'inversify';
 import { makeFluentProvideDecorator } from 'inversify-binding-decorators';
 import Dockerode from 'dockerode';
+import getDecorators from 'inversify-inject-decorators';
 
 export const kernel = new Kernel();
 
@@ -20,4 +21,4 @@ export function provideSingleton (identifier: string|Symbol|interfaces.Newable<a
   return provide(identifier).inSingletonScope().done();
 }
 
-export const inject = makePropertyInjectDecorator(kernel);
+export const inject = getDecorators(kernel).lazyInject;

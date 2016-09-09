@@ -5,7 +5,7 @@ import { UiStore } from '../../stores/UiStore';
 import { observable, computed, action } from 'mobx/lib/mobx';
 import { Link } from 'react-router';
 import { ContainerStore } from '../../stores/ContainerStore';
-import { CONTAINER_RUN_STATE, CONTAINER_STATE } from '../../models/ContainerModel';
+import { CONTAINER_RUN_STATE, CONTAINER_STATE, ContainerModel } from '../../models/ContainerModel';
 import { inject } from '../../utils/IOC';
 import { NotificationStore, Notification, NOTIFICATION_TYPE } from '../../stores/NotificationStore';
 import { AsyncButton } from '../shared/AsyncButton';
@@ -38,12 +38,12 @@ export class Containers extends Component<ContainersProps, {}> {
   private showAllContainers: boolean = false;
 
   @computed
-  private get containers () {
-    return this.containerStore.containers.values();
+  private get containers (): Array<ContainerModel> {
+    return this.containerStore.containers.values().slice(0);
   }
 
   @computed
-  private get runningContainers () {
+  private get runningContainers (): Array<ContainerModel> {
     return this.containers.filter(container => container.state.runState === CONTAINER_RUN_STATE.RUNNING);
   }
 
