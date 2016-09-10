@@ -123,7 +123,7 @@ describe('ImageStore.ts', () => {
 
       expect(store.images.size).toBe(1);
 
-      [ 'pull', 'untag' ].forEach(action => {
+      [ 'pull', 'untag', 'tag' ].forEach(action => {
         // test for local docker installation
         onEventCallback(getDockerEvent(imageResponseMock.Id, action));
         expect(store.loadImage).toHaveBeenCalled();
