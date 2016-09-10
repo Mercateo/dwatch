@@ -58,7 +58,7 @@ export interface TopModel {
 }
 
 export interface DockerEvent {
-  Action: 'create' | 'attach' | 'connect' | 'start' | 'resize' | 'kill' | 'die' | 'disconnect' | 'destroy' | 'top' | 'pause' | 'unpause' | 'pull' | 'untag' | 'delete';
+  Action: 'create' | 'attach' | 'connect' | 'start' | 'resize' | 'kill' | 'die' | 'disconnect' | 'destroy' | 'top' | 'pause' | 'unpause' | 'pull' | 'untag' | 'tag' | 'delete';
   Type: 'container' | 'network' | 'image';
   from: string
   id: string;
@@ -67,7 +67,7 @@ export interface DockerEvent {
 }
 
 export interface DockerSwarmEvent  {
-  status: 'create' | 'attach' | 'connect' | 'start' | 'resize' | 'kill' | 'die' | 'disconnect' | 'destroy' | 'top' | 'pause' | 'unpause' | 'pull' | 'untag' | 'delete';
+  status: 'create' | 'attach' | 'connect' | 'start' | 'resize' | 'kill' | 'die' | 'disconnect' | 'destroy' | 'top' | 'pause' | 'unpause' | 'pull' | 'untag' | 'tag' | 'delete';
   id: string;
   from: string;
   time: number;

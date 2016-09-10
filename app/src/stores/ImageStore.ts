@@ -16,6 +16,7 @@ export class ImageStore {
       switch ((<DockerEvent> event).Action || (<DockerSwarmEvent> event).status) {
         case 'pull':
         case 'untag':
+        case 'tag':
           this.loadImage(event.id);
           break;
         case 'delete':
