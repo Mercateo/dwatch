@@ -1,3 +1,5 @@
+**DEPRECATED** This project is unmantained, deprecated and goes into archive with followup removal in 2 years.
+
 <img src="assets/logo.png" alt="logo" width="120" height="120" align="right" />
 #DWatch
 [![Build Status](https://travis-ci.org/Mercateo/dwatch.svg?branch=master)](https://travis-ci.org/Mercateo/dwatch) [![Build status](https://ci.appveyor.com/api/projects/status/did6covia0c4j0hl/branch/master?svg=true)](https://ci.appveyor.com/project/otbe/dwatch/branch/master) [![Coverage Status](https://coveralls.io/repos/github/Mercateo/dwatch/badge.svg?branch=master)](https://coveralls.io/github/Mercateo/dwatch?branch=master)
